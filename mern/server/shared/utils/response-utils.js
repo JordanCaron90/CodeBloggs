@@ -1,4 +1,4 @@
-const ResponseUtil = {
+const responseUtil = {
     respondOk: (res,data,message)=>{
       res.json({type:'success',data,message});
     },
@@ -6,5 +6,5 @@ const ResponseUtil = {
       res.json({type:'error',data,message});
     }
   };
-  
+
 module.exports = {ResponseUtil};
