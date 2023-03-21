@@ -27,27 +27,27 @@ export default function Create() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
 
-  //   await fetch("http://localhost:5000/record/add", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newPerson),
-  //   })
-  //   .catch(error => {
-  //     window.alert(error);
-  //     return;
-  //   });
+    await fetch("http://localhost:5000/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPerson),
+    })
+    .catch(error => {
+      window.alert(error);
+      return;
+    });
 
-  //   setForm({  first_name: "",
-  //   last_name: "",
-  //   email: "",
-  //   birthday: "",
-  //   password: "",
-  //   occupation: "",
-  //   location: "" });
-  //   navigate("/");
-  // }
+    setForm({  first_name: "",
+    last_name: "",
+    email: "",
+    birthday: "",
+    password: "",
+    occupation: "",
+    location: "" });
+    navigate("/");
+  }
 
   // This following section will display the form that takes the input from the user.
   return (
@@ -87,7 +87,7 @@ export default function Create() {
         <div className="form-group">
           <label htmlFor="birthday">Birthday</label>
           <input
-            type="text"
+            type="date"
             className="form-control"
             id="birthday"
             value={form.birthday}
