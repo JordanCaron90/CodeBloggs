@@ -1,4 +1,4 @@
-const responseUtil = {
+const ResponseUtil = {
     respondOk: (res,data,message)=>{
       res.json({type:'success',data,message});
     },
