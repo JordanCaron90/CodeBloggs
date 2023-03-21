@@ -1,19 +1,20 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
+// Initial dependencies and definitions
 require("dotenv").config({ path: "./config.env" });
+const cors = require("cors");
+const Express = require('express');
+const app = Express();
 const port = process.env.PORT || 5000;
+const MongoManager = require('./src/shared/db/mongodb/mongo-manager.js');
+
 app.use(cors());
-app.use(express.json());
-app.use(require("./routes/record"));
+app.use(Express.json());
+
 // get driver connection
 const dbo = require("./db/conn");
 
-app.listen(port, () => {
-  // perform a database connection when server starts
-  dbo.connectToServer(function (err) {
-    if (err) console.error(err);
+//Mongo Connection
+MongoManager.openMongoConnection();
 
-  });
-  console.log(`Server is running on port: ${port}`);
+app.listen(port, () => {
+  console.log(`server is listening on port ${port}`)
 });
