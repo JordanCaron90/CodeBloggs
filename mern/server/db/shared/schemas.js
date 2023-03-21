@@ -107,3 +107,10 @@ const SessionSchema = new Schema({
         min: 0
     }
 });
+
+const UserModel = mongoose.model('User', UserSchema);
+const CommentModel = mongoose.model('Comment', CommentSchema);
+const PostModel = mongoose.model('Post', PostSchema);
+const SessionModel = mongoose.model('Session', SessionSchema);
+
+module.exports = {UserModel, CommentModel, PostModel, SessionModel};
