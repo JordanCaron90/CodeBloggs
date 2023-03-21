@@ -99,7 +99,7 @@ const SessionSchema = new Schema({
     },
     session_date:  {
          type: Date,
-         required: true
+         default: new Date()
     },
     likes: { 
         type: Number,
