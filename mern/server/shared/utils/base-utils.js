@@ -1,9 +1,11 @@
 const asyncWrapper = (fn) => {
     return async (req,res,next) => {
         try {
-            await fn(req,res, next);
+            const data = await fn(req,res, next);
+            return [data,null];
         } catch (error) {
-           next(error);
+            console.error(error);
+            return [null,error];
         }
     } 
 }
