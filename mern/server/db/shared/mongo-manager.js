@@ -8,7 +8,7 @@ const openMongoConnection = () => {
     db.once('open', function callback () {
         console.log("connected to MongoDB");
     });
-    mongoose.connect(URI);
+    mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 };
 
 mongoose.set('strictQuery', true)
