@@ -9,7 +9,7 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/login";
-import Registeration from "./components/registeration";
+import Registration from "./components/registration";
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
         <Route exact path="/RecordList" element={<RecordList />} />
         <Route path="/" element={<Login />} />
-        <Route path="/registeration" element={<Registeration />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes>
       </div>
     </div>

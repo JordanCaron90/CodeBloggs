@@ -1,7 +1,7 @@
 import '../Style.css'
-import profile from "../assets/images/CodeBloggs graphic.png"
-import email from "../assets/images/emailLgo.png"
-import password from "../assets/images/padlock_321783.png"
+import profile from "../images/CodeBloggs graphic.png"
+import email from "../images/emailLgo.png"
+import password from "../images/padlock_321783.png"
 
 function Login(){
     return(
@@ -28,9 +28,8 @@ function Login(){
                         </div>
                         
                             <p className="link">
-                                <a href="#">Sign Up</a>
+                                <a href="/registration">Sign Up</a>
                             </p>
-                        
                      </div>
                 </div>
             </div>
