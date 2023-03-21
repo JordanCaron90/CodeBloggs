@@ -37,7 +37,7 @@ const UserSchema = new Schema({
     },
     auth_level: { 
         type: String,
-        required: true,
+        default: null,
         lowercase: true
     }
 });
