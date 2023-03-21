@@ -4,7 +4,7 @@ const cors = require("cors");
 const Express = require('express');
 const app = Express();
 const port = process.env.PORT || 5000;
-const MongoManager = require('./db/shared/mongo-manager');
+const MongoManager = require('./shared/db/mongo-manager');
 
 app.use(cors());
 app.use(Express.json());
