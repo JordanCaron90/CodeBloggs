@@ -42,3 +42,27 @@ const UserSchema = new Schema({
     }
 });
 
+const CommentSchema = new Schema({
+    post_id: {
+         type: String, 
+         required: true
+    },
+    user_id:  {
+         type: String,
+         required: true
+    },
+    content:  {
+        type: String,
+        required: true
+    },
+    likes: { 
+        type: Number,
+        default: 0,
+        min: 0
+    },
+    time_stamp: { 
+        type: String,
+        required: true,
+        lowercase: true
+    },
+});
