@@ -1,5 +1,5 @@
 const asyncWrapper = require('../../shared/utils/base-utils');
-const Schemas = require('../../shared/db/shared/schemas');
+const Schemas = require('../../shared/db/schemas');
 const User = Schemas.UserModel;
 
 const insertUser = asyncWrapper( async (req, res) =>{
@@ -18,12 +18,11 @@ const insertUser = asyncWrapper( async (req, res) =>{
     query["auth_level"] = body.auth_level;*/
 
     try{
-       let result = await User.insertUser(body._id,query);
-       return result;
+       return await newUser.save();
     }
     catch(error){
         throw Error(`Error creating agent: ${error.message}`);
     }
 });
 
-moduele.exports = {insertUser};
+module.exports = {insertUser};
