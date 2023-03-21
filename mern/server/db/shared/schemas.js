@@ -91,3 +91,19 @@ const PostSchema = new Schema({
         default: []
     }
 });
+
+const SessionSchema = new Schema({
+    session_id: {
+         type: String, 
+         required: true
+    },
+    session_date:  {
+         type: Date,
+         required: true
+    },
+    likes: { 
+        type: Number,
+        default: 0,
+        min: 0
+    }
+});
