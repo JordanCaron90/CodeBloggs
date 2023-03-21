@@ -9,8 +9,25 @@ const createUser = async(req, res) => {
         ResponseUtil.respondError(res,null,error.message);
     }
     else{
+        res.status(201);
         ResponseUtil.respondOk(res,data,"User successfully created.");
     }
 };
 
-module.exports = {createUser};
+const getUserByEmailAndPassword = async(req, res) => { 
+    const [data, error] = await UserService.findUserByEmailAndPassword(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else if(!data){
+        res.status(403);
+        ResponseUtil.respondError(res,null, "Invalid login credentials.")
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Login credentials confirmed.");
+    }
+};
+
+module.exports = {createUser, getUserByEmailAndPassword};
