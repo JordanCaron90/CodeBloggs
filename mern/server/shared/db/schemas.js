@@ -91,7 +91,6 @@ const PostSchema = new Schema(
     },
     {
         timestamps: true,
-
     },
 );
 
