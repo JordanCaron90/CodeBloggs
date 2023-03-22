@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -42,55 +43,57 @@ const UserSchema = new Schema({
     }
 });
 
-const CommentSchema = new Schema({
-    post_id: {
-         type: String, 
-         required: true
+const CommentSchema = new Schema(
+    {
+        post_id: {
+            type: ObjectId, 
+            required: true
+        },
+        user_id:  {
+            type: ObjectId,
+            required: true
+        },
+        content:  {
+            type: String,
+            required: true
+        },
+        likes: { 
+            type: Number,
+            default: 0,
+            min: 0
+        },
     },
-    user_id:  {
-         type: String,
-         required: true
+    {
+        timestamps: true,
     },
-    content:  {
-        type: String,
-        required: true
-    },
-    likes: { 
-        type: Number,
-        default: 0,
-        min: 0
-    },
-    time_stamp: { 
-        type: String,
-        required: true,
-        lowercase: true
-    },
-});
+);
 
-const PostSchema = new Schema({
-    user_id: {
-         type: String, 
-         required: true
+const PostSchema = new Schema(
+    {
+        user_id: {
+            type: ObjectId, 
+            required: true
+        },
+        content:  {
+            type: String,
+            required: true
+        },
+        likes: { 
+            type: Number,
+            default: 0,
+            min: 0
+        }, 
+
+        comments: { 
+            type: [CommentSchema],
+            default: []
+        }
     },
-    content:  {
-         type: String,
-         required: true
+    {
+        timestamps: true,
+
     },
-    likes: { 
-        type: Number,
-        default: 0,
-        min: 0
-    }, 
-    time_stamp: { 
-        type: String,
-        required: true,
-        lowercase: true
-    }, 
-    comments: { 
-        type: [CommentSchema],
-        default: []
-    }
-});
+);
 
 const SessionSchema = new Schema({
     session_id: {

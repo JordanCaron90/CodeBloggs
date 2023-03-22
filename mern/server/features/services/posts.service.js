@@ -3,8 +3,9 @@ const Schemas = require('../../shared/db/schemas');
 const Post = Schemas.PostModel;
 
 const insertPost = asyncWrapper( async (req, res) =>{
-    let body = req.body;
-    let newPost = new Post(body);
+    let query = req.body;
+
+    let newPost = new Post(query);
 
     try{
        return await newPost.save();
