@@ -11,7 +11,7 @@ const createPost = async(req, res) => {
     }
     else{
         res.status(201);
-        ResponseUtil.respondOk(res,data,"User successfully created.");
+        ResponseUtil.respondOk(res,{data: data},"User successfully created.");
     }
 };
 
