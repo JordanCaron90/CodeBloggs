@@ -12,7 +12,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink className="navbar-brand" to="/">
-        <img style={{"width" : 25 + '%'}} src={process.env.PUBLIC_URL + '/images/CodeBloggs logo2.png'}></img>
+        <img style={{"width" : 25 + '%'}} src={process.env.PUBLIC_URL + '../CodeBloggs logo2.png'}></img>
         </NavLink>
         <button
           className="navbar-toggler"

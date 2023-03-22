@@ -9,6 +9,7 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/login";
+import Registration from "./components/registration";
 
 const App = () => {
   return (
@@ -16,8 +17,9 @@ const App = () => {
       <Navbar />
       <div style={{ margin: 20 }}>
       <Routes>
-        <Route exact path="/" element={<RecordList />} />
-        <Route path="/login" element={<Login />} />
+        <Route exact path="/RecordList" element={<RecordList />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
       </Routes>
       </div>
     </div>

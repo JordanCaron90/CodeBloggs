@@ -1,16 +1,80 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// Import Images for
 import '../Style.css'
 import profile from "../assets/images/CodeBloggs graphic.png"
 import email from "../assets/images/emailLgo.png"
 import password from "../assets/images/padlock_321783.png"
 
+// import for toast
+import Alert  from "react-bootstrap/Alert";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Login(){
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [isError, setIsError] = useState(false); //true = error, false = no error.
+    const error = "Email or Password not matched";
+    const [passwordError, setPasswordError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const navigate = useNavigate();
+    const [showAlert, setShowAlert] = useState(true);
+  
+    const loginSubmit = (e) => {
+      e.preventDefault();
+      // handleValidation();
+      logMe();
+    };
+  
+    const logMe = () => {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      var raw = JSON.stringify({
+        email: email,
+        password: password,
+      });
+  
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+  
+      fetch("http://localhost:5000/user/login", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          // isConnected(result)
+          localStorage.setItem("isLoggedIn", result);
+          if (result === "true") {
+            toast.success("Connected", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            setTimeout(() => (window.location = "/homepage"), 2000);
+          } else {
+            setIsError(true);
+            setTimeout(() => setIsError(false), 5000);
+            navigate("/homepage");
+          }
+        })
+        .catch((error) => console.log("error", error));
+    };
+
     return(
         <div className="main">
             <div className="sub-main">
                 <div>
                     <div className= "igsm">
                        <div className="container-images">
-                       {/* <img src={process.env.PUBLIC_URL+ '/images/Codebloggs graphic.png'}/> */}
                             <img src={profile} alt="profile" className="profile"/>
                        </div>
                      </div>
@@ -29,7 +93,7 @@ function Login(){
                         </div>
                         
                             <p className="link">
-                                <a href="#">Sign Up</a>
+                                <a href="/registration">Sign Up</a>
                             </p>
                         
                      </div>
