@@ -44,7 +44,7 @@ function Login(){
       };
   
       fetch("http://localhost:5000/user/login", requestOptions)
-        .then((response) => response.text())
+        .then((response) => response.json())
         .then((result) => {
           // isConnected(result)
           localStorage.setItem("isLoggedIn", result);
