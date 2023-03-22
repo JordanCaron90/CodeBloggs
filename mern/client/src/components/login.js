@@ -10,6 +10,7 @@ function Login(){
                 <div>
                     <div className= "igsm">
                        <div className="container-images">
+                       {/* <img src={process.env.PUBLIC_URL+ '/images/Codebloggs graphic.png'}/> */}
                             <img src={profile} alt="profile" className="profile"/>
                        </div>
                      </div>
