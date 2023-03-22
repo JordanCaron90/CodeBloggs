@@ -14,12 +14,11 @@ const insertUser = asyncWrapper( async (req, res) =>{
     }
 });
 
-const findUserByEmailAndPassword = asyncWrapper( async (req, res) =>{
+const findUserByEmail = asyncWrapper( async (req, res) =>{
     let body = req.body;
     let query = {};
 
     query["email"] = body.email;
-    query["password"] = body.password;
 
     try{
         return await User.findOne(query);
@@ -30,4 +29,4 @@ const findUserByEmailAndPassword = asyncWrapper( async (req, res) =>{
 
 });
 
-module.exports = {insertUser, findUserByEmailAndPassword};
+module.exports = {insertUser, findUserByEmail};
