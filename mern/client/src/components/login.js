@@ -1,5 +1,7 @@
-import './app.css'
-// import image from ""
+import '../Style.css'
+import profile from "../assets/images/CodeBloggs graphic.png"
+import email from "../assets/images/emailLgo.png"
+import password from "../assets/images/padlock_321783.png"
 
 function Login(){
     return(
@@ -8,13 +10,9 @@ function Login(){
                 <div>
                     <div className= "igsm">
                        <div className="container-images">
+                       {/* <img src={process.env.PUBLIC_URL+ '/images/Codebloggs graphic.png'}/> */}
                             <img src={profile} alt="profile" className="profile"/>
-
                        </div>
-
-
-
-
                      </div>
                      <div>
                         <h1>Login Page</h1>
@@ -22,23 +20,22 @@ function Login(){
                             <img src={email} alt="email" className="email"/>
                             <input type="text" placeholder="user name" className="name"/>
                         </div>
-                        <div className="second input">
+                        <div className="second input" style={{ marginTop: '10px' }}>
                             <img src={password} alt="password" className="email"/>
-                            <input type="password" placeholder="user name" className="name"/>
+                            <input type="password" placeholder="password" className="name"/>
                         </div>
                         <div className="login-button">
                             <button>Login</button>
                         </div>
                         
                             <p className="link">
-                                <a href="#">Forgot Password?</a> or <a href="#">Sign Up</a>
+                                <a href="#">Sign Up</a>
                             </p>
                         
                      </div>
                 </div>
             </div>
         </div>            
-        
     );
 }
 
