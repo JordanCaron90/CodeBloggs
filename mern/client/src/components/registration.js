@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import '../Style.css'
 
-export default function Create() {
+export default function Registration() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",

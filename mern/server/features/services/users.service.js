@@ -17,6 +17,16 @@ const insertUser = asyncWrapper( async (req, res) =>{
     }
 });
 
+const findUserById = asyncWrapper( async (req,res) => {
+    
+    try{
+        return await User.findById(req.params.user_id);
+    }
+    catch(error){
+        throw Error(`Error finding user: ${error.message}`);
+    }
+});
+
 const findUserByEmail = asyncWrapper( async (req, res) =>{
     let body = req.body;
     let query = {};
@@ -44,4 +54,4 @@ const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
 
 });
 
-module.exports = {insertUser, findUserByEmail, findUsersExceptSelf};
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById};

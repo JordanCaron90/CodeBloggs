@@ -6,15 +6,10 @@ import profilePicture from "../assets/images/CodeBloggs graphic.png"
 import emailIcon from "../assets/images/emailLgo.png"
 import passwordIcon from "../assets/images/padlock_321783.png"
 
-// import for toast
-import Alert  from "react-bootstrap/Alert";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 function Login(){
     const navigate = useNavigate();
     const [userToken, setUserToken] = useCookie('token', '0');
-    const [userId, setUser] = useCookie('user', '');
+    const [userId, setUserId] = useCookie('user_id', '');
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -28,9 +23,9 @@ function Login(){
         }
         else{
             let sessionData = await fetchSession(loginData.data);
-            setUser(JSON.stringify(loginData.data))
+            setUserId(loginData.data._id)
             setUserToken(sessionData.data.session_id);
-            navigate("/");
+            navigate("/homepage");
         };
     };
 
