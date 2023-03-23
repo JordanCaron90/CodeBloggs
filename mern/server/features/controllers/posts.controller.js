@@ -28,6 +28,36 @@ const getPostByUser = async(req,res) => {
         ResponseUtil.respondOk(res,data,"Posts retrieved");
     }
 
-}
+};
 
-module.exports = {createPost, getPostByUser};
+const updateLikesByOne = async(req,res) => {
+
+    const [data, error] = await PostService.incrementLikesByOne(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Post liked.");
+    }
+
+};
+
+const updateLikesByMinusOne = async(req,res) => {
+
+    const [data, error] = await PostService.decrementLikesByOne(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Post unliked.");
+    }
+
+};
+
+module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne};
