@@ -11,8 +11,23 @@ const createPost = async(req, res) => {
     }
     else{
         res.status(201);
-        ResponseUtil.respondOk(res,data,"User successfully created.");
+        ResponseUtil.respondOk(res,data,"Post successfully created.");
     }
 };
 
-module.exports = {createPost};
+const getPostByUser = async(req,res) => {
+
+    const [data, error] = await PostService.findPostsByUser(req,res);
+
+    if(error || !data){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Posts retrieved");
+    }
+
+}
+
+module.exports = {createPost, getPostByUser};

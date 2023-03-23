@@ -9,11 +9,22 @@ const insertPost = asyncWrapper( async (req, res) =>{
     let newPost = new Post(query);
 
     try{
-       return await newPost.save();
+        return await newPost.save();
     }
     catch(error){
         throw Error(`Error creating post: ${error.message}`);
     }
 });
 
-module.exports = {insertPost};
+const findPostsByUser = asyncWrapper( async (req,res) => { 
+
+    try{
+        return await Post.find({user_id: req.params.user_id});
+    }
+    catch(error){
+        throw Error(`Error getting post by user: ${error}`);
+    }
+
+});
+
+module.exports = {insertPost, findPostsByUser};
