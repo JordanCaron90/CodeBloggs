@@ -11,6 +11,9 @@ import Create from "./components/create";
 import Login from "./components/login";
 import Registration from "./components/registration";
 import Homepage from "./components/homepage";
+import Mainpage from "./components/mainpage";
+import Blog from "./components/blog";
+
 
 const App = () => {
   return (
@@ -19,9 +22,11 @@ const App = () => {
       <div style={{ margin: 20 }}>
       <Routes>
         <Route exact path="/RecordList" element={<RecordList />} />
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/mainpage" element={<Mainpage />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
       </div>
     </div>

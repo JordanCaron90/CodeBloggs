@@ -77,6 +77,9 @@
     a{
         color:blue;
     }
+    .comment-input {
+        height: 200px;
+      }
     .sub-main {
         background-color: #FFCCCB
         }
