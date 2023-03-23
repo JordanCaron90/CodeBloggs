@@ -38,4 +38,18 @@ const getUserByEmail = async(req, res) => {
     ResponseUtil.respondOk(res,data, "Login successful.");
 };
 
-module.exports = {createUser, getUserByEmail};
+const getUsersExceptSelf = async(req, res) =>{
+
+    const [data, error] = await UserService.findUsersExceptSelf(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Users retrieved");
+    }
+
+};
+
+module.exports = {createUser, getUserByEmail, getUsersExceptSelf};

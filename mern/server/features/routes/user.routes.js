@@ -5,6 +5,7 @@ const Userhash = require('../middleware/hash/users.hash')
 const registerUserRoutes = (app) => {
     app.post('/user/register', Userhash.hashPassword, UserController.createUser);
     app.post('/user/login', UserController.getUserByEmail);
+    app.get('/users/:user_id', UserController.getUsersExceptSelf);
 };
 
 module.exports = {registerUserRoutes};

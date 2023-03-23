@@ -29,4 +29,16 @@ const findUserByEmail = asyncWrapper( async (req, res) =>{
 
 });
 
-module.exports = {insertUser, findUserByEmail};
+const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
+
+    try{
+        const users = await User.find({_id: { $nin: req.params.user_id}});
+        return users;
+    }
+    catch(error){
+        throw Error(`Error finding users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf};
