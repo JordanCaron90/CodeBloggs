@@ -9,7 +9,7 @@ import passwordIcon from "../assets/images/padlock_321783.png"
 function Login(){
     const navigate = useNavigate();
     const [userToken, setUserToken] = useCookie('token', '0');
-    const [userId, setUserId] = useCookie('user_id', '');
+    const [userId, setUser] = useCookie('user', '');
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -23,7 +23,7 @@ function Login(){
         }
         else{
             let sessionData = await fetchSession(loginData.data);
-            setUserId(loginData.data)
+            setUser(JSON.stringify(loginData.data))
             setUserToken(sessionData.data.session_id);
             navigate("/");
         };
