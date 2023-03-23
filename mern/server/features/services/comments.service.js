@@ -30,7 +30,7 @@ const insertComment = asyncWrapper( async (req, res) =>{
         return await post.save()
     }
     catch(error){
-        throw Error(`Error creating comment: ${error.message}`);
+        throw Error(`Error saving comment to post: ${error.message}`);
     }
 
 });

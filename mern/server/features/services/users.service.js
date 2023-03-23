@@ -7,10 +7,13 @@ const insertUser = asyncWrapper( async (req, res) =>{
     let newUser = new User(body);
 
     try{
-       return await newUser.save();
+        if(await User.findOne({email:req.body.email})){
+            throw Error(`user already exists.`);
+        }
+        return await newUser.save();
     }
     catch(error){
-        throw Error(`Error creating agent: ${error.message}`);
+        throw Error(`Error creating user: ${error.message}`);
     }
 });
 
