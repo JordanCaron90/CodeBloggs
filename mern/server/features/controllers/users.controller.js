@@ -11,7 +11,7 @@ const createUser = async(req, res) => {
     }
     else{
         res.status(201);
-        ResponseUtil.respondOk(res,{data: data},"User successfully created.");
+        ResponseUtil.respondOk(res,data,"User successfully created.");
     }
 };
 
@@ -35,7 +35,7 @@ const getUserByEmail = async(req, res) => {
         return;
     }
 
-    ResponseUtil.respondOk(res,{data: data}, "Login successful.");
+    ResponseUtil.respondOk(res,data, "Login successful.");
 };
 
 module.exports = {createUser, getUserByEmail};

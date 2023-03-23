@@ -2,7 +2,6 @@ const SessionService = require('../services/sessions.service');
 const ResponseUtil = require('../../shared/utils/response-utils').ResponseUtil;
 
 const createSession = async(req, res) => {
-
     const [data, error] = await SessionService.insertSession(req,res);
 
     if(error){
@@ -11,7 +10,7 @@ const createSession = async(req, res) => {
     }
     else{
         res.status(201);
-        ResponseUtil.respondOk(res,{data: data},"Session successfully created.");
+        ResponseUtil.respondOk(res,data,"Session successfully created.");
     }
 };
 

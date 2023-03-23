@@ -22,11 +22,11 @@ const App = () => {
       <div style={{ margin: 20 }}>
       <Routes>
         <Route exact path="/RecordList" element={<RecordList />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/Homepage" element={<Homepage />} />
+        <Route path="/homepage" element={<Homepage />} />
         <Route path="/mainpage" element={<Mainpage />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blob" element={<Blog />} />
       </Routes>
       </div>
     </div>

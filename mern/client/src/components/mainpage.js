@@ -19,6 +19,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import profile from "../assets/images/CodeBloggs graphic.png"
 import "../Style.css";
+import Card from 'react-bootstrap/Card';
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -79,8 +80,27 @@ export default function Create() {
                     onChange={(e) => updateForm({ content: e.target.value })}
                 />
             </div>
-            <div className="login-button">
-              <button onClick={onSubmit}>Post</button>
+            <div className="d-flex justify-content-center">
+                <Card style={{ width: '18rem', margin: '1rem' }}>
+                    <Card.Body>
+                    <Card.Title>Initial</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Create, View</Card.Subtitle>
+                    <Card.Text>
+                        Contains all agents information and admin command.
+                    </Card.Text>
+                    <Card.Link href="">Go to Agent List</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card style={{ width: '18rem', margin: '1rem' }}>
+                    <Card.Body>
+                    <Card.Title>Transaction Page</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Money</Card.Subtitle>
+                    <Card.Text>
+                        Contains all transaction information and admin command.
+                    </Card.Text>
+                    <Card.Link href="">Go to Transaction List</Card.Link>
+                    </Card.Body>
+                </Card>
             </div>
           </div>
         </div>
