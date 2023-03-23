@@ -1,11 +1,43 @@
-.navbar {  
+#navbar {
+    position: fixed;
+    top: 300px;
+    left: 0;
+    bottom: 0;
+    width: 200px; /* set the width of the Navbar */
+    background-color: #FFCCCB;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    padding: 0 50px;
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+/* navarbar for navbardemo */
+
+/* .navbar {  
     background-color: #060B26;  
     height: 80px;  
     display: flex;  
     justify-content: start;  
     align-items: center;
-}
-.menu-bars {  
+} */
+/* .menu-bars {  
     margin-left: 2rem;  
     font-size: 2rem;  
     background: none;
@@ -59,4 +91,4 @@
 }
 span {  
     margin-left: 16px;
-}
+} */

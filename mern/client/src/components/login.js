@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // Import Images for
 import '../Style.css'
-import profile from "../assets/images/CodeBloggs graphic.png"
+import profile from "../assets/images/CodeBloggsgraphic.png"
 import email from "../assets/images/emailLgo.png"
 import password from "../assets/images/padlock_321783.png"
 
