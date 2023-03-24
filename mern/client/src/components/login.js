@@ -14,7 +14,7 @@ import passwordIcon from "../assets/images/padlock_321783.png"
 function Login(){
     const navigate = useNavigate();
     const [userToken, setUserToken] = useCookie('token', '0');
-    const [userId, setUser] = useCookie('user', '');
+    const [userId, setUserId] = useCookie('user_id', '');
     const [form, setForm] = useState({
         email: "",
         password: "",
@@ -28,9 +28,9 @@ function Login(){
         }
         else{
             let sessionData = await fetchSession(loginData.data);
-            setUser(JSON.stringify(loginData.data))
+            setUserId(loginData.data._id)
             setUserToken(sessionData.data.session_id);
-            navigate("/");
+            navigate("/homepage");
         };
     };
 

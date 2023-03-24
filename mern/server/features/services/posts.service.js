@@ -27,4 +27,37 @@ const findPostsByUser = asyncWrapper( async (req,res) => {
 
 });
 
-module.exports = {insertPost, findPostsByUser};
+const incrementLikesByOne = asyncWrapper( async (req,res) => {
+
+    try{
+        return await Post.findOneAndUpdate({ _id: req.params.post_id },{ $inc: { likes: 1 } });
+    }
+    catch(error){
+        throw Error(`Error updating post's likes: ${error.message}`);
+    }
+
+});
+
+const decrementLikesByOne = asyncWrapper( async (req,res) => {
+
+    try{
+        return await Post.findOneAndUpdate({ _id: req.params.post_id },{ $inc: { likes: -1 } });
+    }
+    catch(error){
+        throw Error(`Error updating post's likes: ${error.message}`);
+    }
+
+});
+
+const findAllBlogPosts = asyncWrapper( async(res,next) =>{
+
+    try{
+        return await Post.find();
+    }
+    catch(error){
+        throw Error(`Error retrieving posts: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts};

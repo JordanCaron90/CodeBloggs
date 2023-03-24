@@ -7,10 +7,23 @@ const insertUser = asyncWrapper( async (req, res) =>{
     let newUser = new User(body);
 
     try{
-       return await newUser.save();
+        if(await User.findOne({email:req.body.email})){
+            throw Error(`user already exists.`);
+        }
+        return await newUser.save();
     }
     catch(error){
-        throw Error(`Error creating agent: ${error.message}`);
+        throw Error(`Error creating user: ${error.message}`);
+    }
+});
+
+const findUserById = asyncWrapper( async (req,res) => {
+    
+    try{
+        return await User.findById(req.params.user_id);
+    }
+    catch(error){
+        throw Error(`Error finding user: ${error.message}`);
     }
 });
 
@@ -29,4 +42,16 @@ const findUserByEmail = asyncWrapper( async (req, res) =>{
 
 });
 
-module.exports = {insertUser, findUserByEmail};
+const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
+
+    try{
+        const users = await User.find({_id: { $nin: req.params.user_id}});
+        return users;
+    }
+    catch(error){
+        throw Error(`Error finding users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById};

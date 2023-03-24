@@ -15,6 +15,24 @@ const createUser = async(req, res) => {
     }
 };
 
+const getUserById = async(req,res) => {
+
+    const [data, error] = await UserService.findUserById(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+        return;
+    }
+    if(!data){
+        res.status(404);
+        ResponseUtil.respondError(res,null,'User not found.');
+        return;
+    }
+
+    ResponseUtil.respondOk(res,data, "User found.");
+};
+
 const getUserByEmail = async(req, res) => { 
     const [data, error] = await UserService.findUserByEmail(req,res);
 
@@ -38,4 +56,18 @@ const getUserByEmail = async(req, res) => {
     ResponseUtil.respondOk(res,data, "Login successful.");
 };
 
-module.exports = {createUser, getUserByEmail};
+const getUsersExceptSelf = async(req, res) =>{
+
+    const [data, error] = await UserService.findUsersExceptSelf(req,res);
+
+    if(error){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Users retrieved");
+    }
+
+};
+
+module.exports = {createUser, getUserByEmail, getUsersExceptSelf,getUserById};
