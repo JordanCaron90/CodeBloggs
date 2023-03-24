@@ -10,7 +10,7 @@ export default function Headercomp() {
     const [showModal, setShowModal] = useState(false);
     //   const [postTitle, setPostTitle] = useState('');
     //   const [postContent, setPostContent] = useState('');
-    const [userName, setUserName] = useState('John Doe');
+    const [userName, setUserName] = useState('User');
     const [menuOpen, setMenuOpen] = useState(false);
     
     const handlePostClick = () => {
@@ -39,7 +39,7 @@ export default function Headercomp() {
         <div id="codebloggs" className="header-center">
           <h1>CodeBloggs</h1>
         </div>
-        <div id="post" className="header-right">
+        <div id="post">
   <div className="post-button-container">
     <button onClick={handlePostClick}>Post</button>
   </div>

@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 // Import Images for
 import '../Style.css'
 import profile from "../assets/images/CodeBloggsgraphic.png"
-import email from "../assets/images/emailLgo.png"
-import password from "../assets/images/padlock_321783.png"
+import emails from "../assets/images/emailLgo.png"
+import passwords from "../assets/images/padlock_321783.png"
 
 // import for toast
 import Alert  from "react-bootstrap/Alert";
@@ -81,11 +81,11 @@ function Login(){
                      <div>
                         <h1>Login Page</h1>
                         <div>
-                            <img src={email} alt="email" className="email"/>
+                            <img src={emails} alt="email" className="email"/>
                             <input type="text" placeholder="user name" className="name"/>
                         </div>
                         <div className="second input" style={{ marginTop: '10px' }}>
-                            <img src={password} alt="password" className="email"/>
+                            <img src={passwords} alt="password" className="email"/>
                             <input type="password" placeholder="password" className="name"/>
                         </div>
                         <div className="login-button">
