@@ -21,6 +21,9 @@ export default function Navbar() {
           <li>
             <a href="#">Network</a>
           </li>
+          <li>
+            <a href="#">Admin</a>
+          </li>
         </ul>
       </nav>
     </div>
