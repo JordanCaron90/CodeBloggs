@@ -60,7 +60,7 @@ function Login(){
         };
 
         try {
-            const fetchResponse = await fetch(`http://localhost:5000/session/${user._id}`, settings);
+            const fetchResponse = await fetch(`http://localhost:5000/session`, settings);
             const data = await fetchResponse.json();
             return data;
         } catch (e) {
