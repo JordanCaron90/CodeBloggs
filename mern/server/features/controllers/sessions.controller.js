@@ -21,7 +21,7 @@ const getSessionByToken = async(req, res) => {
         res.status(500);
         ResponseUtil.respondError(res,null,error.message);
     }
-    else if(data.length == 0){
+    else if(!data){
         res.status(404);
         ResponseUtil.respondError(res,null,"Session not found");
     }
