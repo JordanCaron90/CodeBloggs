@@ -6,10 +6,7 @@ import "../Style.css";
 export default function Create() {
   const [form, setForm] = useState({
     content: "",
-    user_id: "",
-    likes: "",
-    time_stamp: "",
-    Comment: ""
+    user_id: "641b9080615c564ad974bb84"
   });
   const navigate = useNavigate();
 
@@ -33,11 +30,7 @@ export default function Create() {
     })
       .then(() => {
         setForm({
-          content: "",
-          user_id: "",
-          likes: "",
-          time_stamp: "",
-          Comment: ""
+          content: ""
         });
         navigate("/");
       })
