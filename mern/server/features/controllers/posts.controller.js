@@ -60,4 +60,19 @@ const updateLikesByMinusOne = async(req,res) => {
 
 };
 
-module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne};
+const getAllBlogPosts = async(req,res) => {
+
+    const [data, error] = await PostService.findAllBlogPosts(req,res);
+
+    if(error || !data){
+        res.status(400);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Posts retrieved");
+    }
+
+};
+
+module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne, getAllBlogPosts};
