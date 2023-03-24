@@ -49,7 +49,7 @@ const decrementLikesByOne = asyncWrapper( async (req,res) => {
 
 });
 
-const findAllBlogPosts = asyncWrapper( async(res,next) =>{
+const findAllBlogPosts = asyncWrapper( async(req,res) =>{
 
     try{
         return await Post.find();
@@ -60,4 +60,15 @@ const findAllBlogPosts = asyncWrapper( async(res,next) =>{
 
 });
 
-module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts};
+const findLatestBlogPost = asyncWrapper( async(req,res) => {
+
+    try{
+        return await Post.findOne({user_id: req.params.user_id}).sort({updatedAt:-1}).limit(1);
+    }
+    catch(error){
+        throw Error(`Error retrieving latest post: ${error}`);
+    }
+
+});
+
+module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts, findLatestBlogPost};
