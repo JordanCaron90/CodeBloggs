@@ -14,4 +14,21 @@ const createSession = async(req, res) => {
     }
 };
 
-module.exports = {createSession};
+const getSessionByToken = async(req, res) => {
+    const [data, error] = await SessionService.findSessionUser(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message);
+    }
+    else if(data.length == 0){
+        res.status(404);
+        ResponseUtil.respondError(res,null,"Session not found");
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Session found.");
+    }
+};
+
+module.exports = {createSession, getSessionByToken};

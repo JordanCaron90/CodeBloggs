@@ -16,4 +16,15 @@ const insertSession = asyncWrapper( async (req, res) =>{
     }
 });
 
-module.exports = {insertSession};
+
+const findSessionUser = ( async (req,res) => {
+
+    try{
+        return await Session.find({session_id: req.params.session_id});
+    }
+    catch(error){
+        throw Error(`Error getting session: ${error.message}`);
+    }
+
+});
+module.exports = {insertSession, findSessionUser};

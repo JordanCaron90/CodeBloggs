@@ -6,11 +6,6 @@ import profilePicture from "../assets/images/CodeBloggs graphic.png"
 import emailIcon from "../assets/images/emailLgo.png"
 import passwordIcon from "../assets/images/padlock_321783.png"
 
-// import for toast
-// import Alert  from "react-bootstrap/Alert";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 function Login(){
     const navigate = useNavigate();
     const [userToken, setUserToken] = useCookie('token', '0');
@@ -65,7 +60,7 @@ function Login(){
         };
 
         try {
-            const fetchResponse = await fetch(`http://localhost:5000/session/${user._id}`, settings);
+            const fetchResponse = await fetch(`http://localhost:5000/session`, settings);
             const data = await fetchResponse.json();
             return data;
         } catch (e) {
