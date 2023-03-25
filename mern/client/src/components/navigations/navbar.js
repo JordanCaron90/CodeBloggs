@@ -1,5 +1,5 @@
 import React from "react";
-import './navbar.css';
+import '../css/navbar.css';
 
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";

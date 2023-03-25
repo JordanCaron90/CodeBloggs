@@ -4,13 +4,13 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // We import all the components we need in our app
-import Navbar from "./components/navbar";
+import Navbar from "./components/navigations/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
-import Login from "./components/login";
-import Registration from "./components/registration";
-import Homepage from "./components/homepage";
+import Login from "./components/pages/login";
+import Registration from "./components/pages/registration";
+import Homepage from "./components/pages/homepage";
 // import Loginn from "./components/test login/loginn";
 
 

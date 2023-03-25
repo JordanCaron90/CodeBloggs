@@ -1,5 +1,5 @@
-import "./Style.css";
-import Carousel from "./components/carousel";
+import "./components/css/Style.css";
+import Carousel from "./components/navigations/carousel";
 import React from "react";
 
 function App2() {

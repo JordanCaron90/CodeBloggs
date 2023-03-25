@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from "./navbar";
 import "bootstrap/dist/css/bootstrap.css";
-import './headercomp.css';
-import profile from "../assets/images/CodeBloggsgraphic.png"
+import '../css/headercomp.css';
+import profile from "../../assets/images/CodeBloggsgraphic.png"
 
 
 

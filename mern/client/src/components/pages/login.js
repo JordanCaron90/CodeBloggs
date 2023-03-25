@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import Images for
-import '../Style.css'
-import profile from "../assets/images/CodeBloggsgraphic.png"
-import emails from "../assets/images/emailLgo.png"
-import passwords from "../assets/images/padlock_321783.png"
+import '../css/Style.css'
+import profile from "../../assets/images/CodeBloggsgraphic.png"
+import emails from "../../assets/images/emailLgo.png"
+import passwords from "../../assets/images/padlock_321783.png"
 
 // import for toast
 import Alert  from "react-bootstrap/Alert";
