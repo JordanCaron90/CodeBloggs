@@ -75,4 +75,23 @@ const getAllBlogPosts = async(req,res) => {
 
 };
 
-module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne, getAllBlogPosts};
+const getLatestBlogPost = async(req,res) => {
+
+    const [data, error] = await PostService.findLatestBlogPost(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,data,error.message);
+    }
+    else if(!data){
+        res.status(404);
+        ResponseUtil.respondError(res,data,"No post found.");
+    }
+    else{
+        res.status(200);
+        ResponseUtil.respondOk(res,data,"Latest post retrieved.");
+    }
+
+};
+
+module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne, getAllBlogPosts, getLatestBlogPost};

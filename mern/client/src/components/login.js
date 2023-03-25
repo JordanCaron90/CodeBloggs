@@ -19,7 +19,7 @@ function Login(){
         e.preventDefault();
         let loginData = await fetchLogin();
         if(loginData.type == "error"){
-            navigate("/login");
+            navigate("/");
         }
         else{
             let sessionData = await fetchSession(loginData.data);
