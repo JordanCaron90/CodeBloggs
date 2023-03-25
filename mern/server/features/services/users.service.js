@@ -5,24 +5,53 @@ const User = Schemas.UserModel;
 const insertUser = asyncWrapper( async (req, res) =>{
     let body = req.body;
     let newUser = new User(body);
-    //let query = {};
-
-    /*query["first_name"] = body.first_name;
-    query["last_name"] = body.last_name;
-    query["birthday"] = body.birthday;
-    query["email"] = body.email;
-    query["password"] = body.password;
-    query["status"] = body.status;
-    query["location"] = body.location;
-    query["occupation"] = body.occupation;
-    query["auth_level"] = body.auth_level;*/
 
     try{
-       return await newUser.save();
+        if(await User.findOne({email:req.body.email})){
+            throw Error(`user already exists.`);
+        }
+        return await newUser.save();
     }
     catch(error){
-        throw Error(`Error creating agent: ${error.message}`);
+        throw Error(`Error creating user: ${error.message}`);
     }
 });
 
-module.exports = {insertUser};
+const findUserById = asyncWrapper( async (req,res) => {
+    
+    try{
+        return await User.findById(req.params.user_id);
+    }
+    catch(error){
+        throw Error(`Error finding user: ${error.message}`);
+    }
+});
+
+const findUserByEmail = asyncWrapper( async (req, res) =>{
+    let body = req.body;
+    let query = {};
+
+    query["email"] = body.email;
+
+    try{
+        return await User.findOne(query);
+    }
+    catch(error){
+        throw Error(`Error finding user: ${error.message}`);
+    }
+
+});
+
+const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
+
+    try{
+        const users = await User.find({_id: { $nin: req.params.user_id}});
+        return users;
+    }
+    catch(error){
+        throw Error(`Error finding users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById};
