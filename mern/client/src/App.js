@@ -11,21 +11,33 @@ import Create from "./components/create";
 import Login from "./components/pages/login";
 import Registration from "./components/pages/registration";
 import Homepage from "./components/pages/homepage";
-// import Loginn from "./components/test login/loginn";
+import Headercomp from "./components/navigations/headercomp";
+import Home from "./components/pages/home";
 
+// import Loginn from "./components/test login/loginn";
+// const  isLoggedIn =!!cookies.sessionToken;
 
 const App = () => {
   return (
-
     <div>
-        <Routes>
-        <Route path="/" element={<Login />} />
-          {/* <Route exact path="/RecordList" element={<RecordList />} /> */}
-          {/* <Route path="/a" element={<Loginn />} /> */}
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/homepage" element={<Homepage />} />
-      
-        </Routes>
+      <Headercomp/> 
+      {/* {isLoggedIn ? <Headercomp/> : ''} */}
+      <div>
+      <Navbar/>
+      {/* {isLoggedIn ? <Navbar/> : ''} */}
+        <div>
+          <Routes>
+            <Route path="/home" element={<Home />} /> 
+            <Route path="/homepage" element={<Homepage />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/registration" element={<Registration />} />
+            {/* isLoggedIn ? */}
+            {/* <Route path="/home" element={<Home />} /> */}
+            {/* <Route exact path="/RecordList" element={<RecordList />} /> */}
+            {/* <Route path="/a" element={<Loginn />} /> */}
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 };

@@ -59,11 +59,11 @@ function Login(){
               progress: undefined,
               theme: "light",
             });
-            setTimeout(() => (window.location = "/homepage"), 2000);
+            setTimeout(() => (window.location = "/home"), 2000);
           } else {
             setIsError(true);
             setTimeout(() => setIsError(false), 5000);
-            navigate("/homepage");
+            navigate("/home");
           }
         })
         .catch((error) => console.log("error", error));
