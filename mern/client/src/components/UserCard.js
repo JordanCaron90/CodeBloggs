@@ -11,7 +11,7 @@ function UserCard(props) {
   const Birthday = props.user.birthday.split('T')[0];
   const Occupation = props.user.occupation;
   const Location = props.user.location;
-  const [post, setPost] = useState({content: "Nothing yet.", updatedAt: ""});
+  const [post, setPost] = useState({content: "Nothing yet.", updatedAt: "N/A"});
 
   const setupPost = (post) => {
 
@@ -40,9 +40,9 @@ function UserCard(props) {
   },[]);
 
   return (
-    <Card style={{ width: '22rem' }} className='mt-5 mx-auto'>
+    <Card style={{ width: '22rem', padding: "0rem" }} className='mt-5 mx-auto'>
       <Card.Header className="text-center">{Name}</Card.Header>
-      <Card.Body>
+      <Card.Body style={{padding: "1rem"}}>
       <Card.Title className="text-center">Status: {Status}</Card.Title>
         <ListGroup variant="flush">
           <ListGroup.Item>Email: {Email}</ListGroup.Item>
@@ -53,7 +53,7 @@ function UserCard(props) {
         <Accordion>
         <Accordion.Item eventKey="0">
           <Accordion.Header>Recent Post</Accordion.Header>
-          <Accordion.Body>
+          <Accordion.Body className="text-center">
             {post.content}
             <Card.Footer className="text-muted text-center">{post.updatedAt}</Card.Footer>
           </Accordion.Body>
