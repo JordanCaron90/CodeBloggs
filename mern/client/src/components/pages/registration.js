@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import '../css/Style.css';
 
 
-export default function Create() {
+export default function Registration() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -28,7 +28,7 @@ export default function Create() {
 
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPerson = { ...form };
-
+    console.log()
     await fetch("http://localhost:5000/user/register", {
       method: "POST",
       headers: {

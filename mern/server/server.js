@@ -9,6 +9,7 @@ const MongoManager = require('./shared/db/mongo-manager');
 const UserRoutes = require("./features/routes/user.routes");
 const PostRoutes = require("./features/routes/post.routes");
 const SessionRoutes = require("./features/routes/session.routes");
+const CommentRoutes = require("./features/routes/comment.routes");
 
 app.use(cors());
 app.use(Express.json());
@@ -16,6 +17,7 @@ app.use(Express.json());
 UserRoutes.registerUserRoutes(app);
 PostRoutes.registerPostRoutes(app);
 SessionRoutes.registerSessionRoutes(app);
+CommentRoutes.registerCommentRoutes(app);
 
 //Mongo Connection
 MongoManager.openMongoConnection();
