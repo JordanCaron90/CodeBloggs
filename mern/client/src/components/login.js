@@ -25,7 +25,7 @@ function Login(){
             let sessionData = await fetchSession(loginData.data);
             setUserId(loginData.data._id)
             setUserToken(sessionData.data.session_id);
-            navigate("/homepage");
+            navigate("/mainpage");
         };
     };
 

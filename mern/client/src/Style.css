@@ -87,6 +87,22 @@
     .sub-main {
         background-color: #FFCCCB
         }
+    .sub-main1{
+        display: flex;
+        justify-content: center;
+        height: 600px;
+        width: 80%;
+        box-shadow: 11px 12px 13px 12px 12px rbg(207, 207, 207);
+        padding-top: 30px;
+        border-radius: 60px;
+        background-color: white;
+    }
+    .sub-main1 {
+        background-color: #FFCCCB
+        }
+
+
+
     /* body {
             background-color: #FFAE9E;
           } */
