@@ -1,6 +1,6 @@
-import City from "../images/city.jpg";
-import Salvador from "../images/salvador.jpg";
-import Ubc from "../images/ubc.jpg";
+import City from "../assets/images/padlock_321783.png"; //city
+import Salvador from "../assets/images/padlock_321783.png"; // slavaador
+import Ubc from "../assets/images/padlock_321783.png";  //ubc
 
 export const images = [
   { title: "San Diego", subtitle: "This is San Diego", img: City },

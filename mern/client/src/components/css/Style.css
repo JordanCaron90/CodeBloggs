@@ -78,7 +78,8 @@
         color:blue;
     }
     .sub-main {
-        background-color: #FFCCCB
+        background-color: #FFCCCB;
+        border: 2px solid #8d88ea;
         }
     /* body {
             background-color: #FFAE9E;
