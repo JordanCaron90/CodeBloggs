@@ -13,6 +13,7 @@ import Registration from "./components/pages/registration";
 import Homepage from "./components/pages/homepage";
 import Headercomp from "./components/navigations/headercomp";
 import Home from "./components/pages/home";
+import Carousel from "./components/navigations/carousel";
 
 // import Loginn from "./components/test login/loginn";
 // const  isLoggedIn =!!cookies.sessionToken;
@@ -24,6 +25,7 @@ const App = () => {
       {/* {isLoggedIn ? <Headercomp/> : ''} */}
       <div>
       <Navbar/>
+      {/* <Carousel/> */}
       {/* {isLoggedIn ? <Navbar/> : ''} */}
         <div>
           <Routes>
