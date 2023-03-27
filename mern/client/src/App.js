@@ -10,7 +10,7 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/pages/login";
 import Registration from "./components/pages/registration";
-import Homepage from "./components/pages/homepage";
+// import Homepage from "./components/pages/homepage";
 import Headercomp from "./components/navigations/headercomp";
 import Home from "./components/pages/home";
 import Carousel from "./components/navigations/carousel";
@@ -30,11 +30,10 @@ const App = () => {
         <div>
           <Routes>
             <Route path="/home" element={<Home />} /> 
-            <Route path="/homepage" element={<Homepage />} />
+            {/* <Route path="/homepage" element={<Homepage />} /> */}
             <Route path="/" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             {/* isLoggedIn ? */}
-            {/* <Route path="/home" element={<Home />} /> */}
             {/* <Route exact path="/RecordList" element={<RecordList />} /> */}
             {/* <Route path="/a" element={<Loginn />} /> */}
           </Routes>
