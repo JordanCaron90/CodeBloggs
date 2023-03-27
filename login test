@@ -118,3 +118,260 @@ function Login() {
           </div>
 );
 }
+
+
+
+// homepgae export
+
+function Homepage() {
+  return(
+      <div>
+          <Navbardemo/>
+      </div>
+  )
+  
+}
+
+#logo {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  bottom: 0;
+  width: 200px; /* set the width of the Navbar */
+}
+
+#codebloggs {
+  position: fixed;
+  top: 0px;
+  left: 600px;
+  bottom: 0;
+  width: 200px; /* set the width of the Navbar */
+}
+
+#post {
+  position: fixed;
+  top: 0px;
+  left: 900px;
+  bottom: 0;
+  width: 200px; /* set the width of the Navbar */
+}
+
+.imagep {
+  height: 0%;
+  width : 50%;
+}
+#dropdown {
+  position: fixed;
+  top: 0px;
+  left: 1200px;
+  bottom: 0;
+  width: 200px; /* set the width of the Navbar */
+}
+
+// with aspect ratio
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px; /* set the height of the header */
+  padding: 0 20px; /* add some padding to the sides */
+}
+
+.header-item {
+  width: 25%; /* divide the width equally among the items */
+}
+
+#logo img {
+  height: 100%; /* set the height to match the header */
+  width: auto; /* keep the aspect ratio */
+}
+
+#dropdown .dropdown-content {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+}
+
+//         <header>
+//   <div class="header-wrapper">
+//     <div id="logo" class="header-item">
+//       <img class="imagep" src={profile} alt="Logo" />
+//     </div>
+//     <div id="codebloggs" class="header-item">
+//       <h1>CodeBloggs</h1>
+//     </div>
+//     <div id="post" class="header-item">
+//       <button onClick={handlePostClick}>Post</button>
+//     </div>
+//     <div id="dropdown" class="header-item">
+//       <button class="dropbtn" onClick={handleUserNameClick}>
+//         {userName} &#9660;
+//       </button>
+//       {menuOpen && (
+//         <div class="dropdown-content">
+//           <a href="#" onClick={handleAccountSettingsClick}>Account Settings</a>
+//           <a href="#" onClick={handleLogoutClick}>Logout</a>
+//         </div>
+//       )}
+//     </div>
+//   </div>
+// </header>
+
+<!-- navbar test -->
+<!-- //     <div>
+  //       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  //         <NavLink className="navbar-brand" to="/">
+  //         <img style={{"width" : 25 + '%'}} src={process.env.PUBLIC_URL + '../CodeBloggs logo2.png'}></img>
+  //         </NavLink>
+  //         <button
+  //           className="navbar-toggler"
+  //           type="button"
+  //           data-toggle="collapse"
+  //           data-target="#navbarSupportedContent"
+  //           aria-controls="navbarSupportedContent"
+  //           aria-expanded="false"
+  //           aria-label="Toggle navigation"
+  //         >
+  //           <span className="navbar-toggler-icon"></span>
+  //         </button>
+  
+  //         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+  //           <ul className="navbar-nav ml-auto">
+  //             <li className="nav-item">
+  //               <NavLink className="nav-link" to="/create">
+  //                 Create Record
+  //               </NavLink>
+  //             </li>
+  //           </ul>
+  //         </div>
+  //       </nav>
+  //     </div> -->
+
+  // import navbar.js
+
+// function Homepage() {
+//     return(
+//         <div>
+//             <Navbar/>
+//         </div>
+//     )
+    
+//   }
+
+//   import headercompjs
+ 
+
+// function Homepage() {
+//   const [showModal, setShowModal] = useState(false);
+//   const [postTitle, setPostTitle] = useState('');
+//   const [postContent, setPostContent] = useState('');
+//   const [userName, setUserName] = useState('John Doe');
+//   const [menuOpen, setMenuOpen] = useState(false);
+
+//   const handlePostClick = () => {
+//     setShowModal(true);
+//   };
+
+//   const handleModalClose = () => {
+//     setShowModal(false);
+//   };
+
+//   const handlePostTitleChange = (event) => {
+//     setPostTitle(event.target.value);
+//   };
+
+//   const handlePostContentChange = (event) => {
+//     setPostContent(event.target.value);
+//   };
+
+//   const handleUserNameClick = () => {
+//     setMenuOpen(!menuOpen);
+//   };
+
+//   const handleAccountSettingsClick = () => {
+//     // TODO: Handle account settings click
+//   };
+
+//   const handleLogoutClick = () => {
+//     // TODO: Handle logout click
+//   };
+
+//   return (
+//     <div className="App">
+//       <header>
+//         <div className="header-left">
+//           <div className="logo">
+//             <img src="../assets/images/CodeBloggs graphic.png" alt="Logo" />
+//           </div>
+//         </div>
+//         <div className="header-center">
+//           <h1>CodeBloggs</h1>
+//         </div>
+//         <div className="header-right">
+//           <button onClick={handlePostClick}>Post</button>
+//           <div className="dropdown">
+//             <button className="dropbtn" onClick={handleUserNameClick}>
+//               {userName} &#9660;
+//             </button>
+//             {menuOpen && (
+//               <div className="dropdown-content">
+//                 <a href="#" onClick={handleAccountSettingsClick}>Account Settings</a>
+//                 <a href="#" onClick={handleLogoutClick}>Logout</a>
+//               </div>
+//             )}
+//           </div>
+//         </div>
+//       </header>
+//       {showModal && (
+//         <div className="modal">
+//           <div className="modal-content">
+//             <h2>Post something</h2>
+//             <label htmlFor="post-title">Title:</label>
+//             <input type="text" id="post-title" value={postTitle} onChange={handlePostTitleChange} />
+//             <label htmlFor="post-content">Content:</label>
+//             <textarea id="post-content" value={postContent} onChange={handlePostContentChange} />
+//             <button onClick={handleModalClose}>Cancel</button>
+//             {/* <button onClick={handlePostSubmit}>Post</button> */}
+//           </div>
+//         </div>
+//       )}
+//       <nav>
+//         <ul>
+//           <li>
+//             <a href="#">Home</a>
+//           </li>
+//           <li>
+//             <a href="#">Bloggs</a>
+//           </li>
+//           <li>
+//             <a href="#">Network</a>
+//           </li>
+//         </ul>
+//       </nav>
+//       <main>
+//         {/* Add your news feed component here */}
+//         hello world
+//       </main>
+//     </div>
+//   );
+// }
+
+<!-- navarbar css 1 -->
+#navbar {
+  position: fixed;
+  top: 300px;
+  left: 0;
+  bottom: 0;
+  width: 200px; /* set the width of the Navbar */
+  background-color: #FFCCCB;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 0 50px;
+}
