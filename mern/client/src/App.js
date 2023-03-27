@@ -15,7 +15,6 @@ import Mainpage from "./components/mainpage";
 import Blog from "./components/blog";
 import NetworkView from "./components/NetworkView";
 
-
 const App = () => {
   return (
     <div>
@@ -28,7 +27,7 @@ const App = () => {
         <Route path="/homepage" element={<Homepage />} />
         <Route path="/mainpage" element={<Mainpage />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/NetworkView" element={<NetworkView/>}/>
+        <Route path="/network" element={<NetworkView/>}/>
       </Routes>
       </div>
     </div>
