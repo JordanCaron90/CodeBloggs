@@ -1,0 +1,27 @@
+.network-view-wrapper {
+    margin-left: 100px;
+  }
+  
+  .row.row-cols-md-3.row-cols-1 {
+    display: fixed;
+    position: sticky;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    margin-left: 30px;
+  }
+  
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+    margin-bottom: 5px;
+  }
+  
+  .card {
+    max-width: 300px;
+    max-height: 400px;
+  }
+  .card-body {
+    position: relative;
+  }

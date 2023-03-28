@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import '../css/Style.css';
+import '../css/registration.css';
 
 
 export default function Registration() {
