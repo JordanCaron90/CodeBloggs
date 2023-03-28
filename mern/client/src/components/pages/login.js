@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useCookie from 'react-use-cookie';
-import '../Style.css'
-import profilePicture from "../assets/images/CodeBloggs graphic.png"
-import emailIcon from "../assets/images/emailLgo.png"
-import passwordIcon from "../assets/images/padlock_321783.png"
+import '../css/Style.css'
+import profilePicture from "../../images/CodeBloggs graphic.png"
+import emailIcon from "../../images/emailLgo.png"
+import passwordIcon from "../../images/padlock_321783.png"
 
 function Login(){
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ function Login(){
             let sessionData = await fetchSession(loginData.data);
             setUserId(loginData.data._id)
             setUserToken(sessionData.data.session_id);
-            navigate("/mainpage");
+            navigate("/home");
         };
     };
 
