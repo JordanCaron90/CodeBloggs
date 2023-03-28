@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import profile from "../assets/images/CodeBloggs graphic.png"
 import "../Style.css";
 
+
 export default function Create() {
   const [form, setForm] = useState({
     content: "",
-    user_id: "641b9080615c564ad974bb84"
+    user_id: ""
   });
   const navigate = useNavigate();
 
