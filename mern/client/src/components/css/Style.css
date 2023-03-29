@@ -73,43 +73,14 @@
         font-weight: 400;
     }
     a{
-        color:blue;
+        color:#8d88ea;
     }
     .comment-input {
         height: 200px;
       }
-      .card-container {
-        display: flex;
-      }
-      
     .sub-main {
         background-color: #FFCCCB;
         border: 2px solid #8d88ea;
         }
-    .sub-main1{
-        display: flex;
-        justify-content: center;
-        height: 600px;
-        width: 80%;
-        box-shadow: 11px 12px 13px 12px 12px rbg(207, 207, 207);
-        padding-top: 30px;
-        border-radius: 60px;
-        background-color: white;
-    }
-    .sub-main1 {
-        background-color: #FFCCCB
-        }
+   
 
-
-
-    /* body {
-            background-color: #FFAE9E;
-          } */
-
-
-/* Sidebar */
-  
-  body {
-    margin: 0;
-    padding: 0;
-  }
