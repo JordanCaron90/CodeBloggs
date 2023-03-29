@@ -14,23 +14,11 @@ export default function NetworkView() {
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
     const columnsPerRow = 3;
-  const [userId, setUserId] = useState();
-  const [users, setUsers] = useState([]);
-  const columnsPerRow = 3;
 
-  useEffect(async() => {
-    const getUser = async () => {
-      const token = getCookie('token');
-      try {
-        const fetchResponse = await fetch(`http://localhost:5000/session/${token}`);
-        const data = await fetchResponse.json();
-        return data;
-      } catch (e) {
-        return e;
-      }   
-    };
+    useEffect(async() => {
 
         const getUser = async () => {
+
             const token = getCookie('token');
             
             try {
@@ -50,9 +38,6 @@ export default function NetworkView() {
         setUserId(response.data.user._id);
 
     },[]);
-    const response = await getUser();
-    setUserId(response.data.user._id);
-  },[]);
 
     useEffect(async() => {
 
@@ -71,42 +56,16 @@ export default function NetworkView() {
         }
 
     },[userId]);
-  useEffect(async() => {
-    const getUsersExceptSelf = async () => {
-      try {
-        const fetchResponse = await fetch(`http://localhost:5000/users/${userId}`);
-        const data = await fetchResponse.json();
-        return data;
-      } catch (e) {
-        return e;
-      }   
-    };
-    if(userId){
-      const response = await getUsersExceptSelf();
-      setUsers(response.data);
-    }
-  },[userId]);
 
     function userList() {
         return users.map((user) => {
-          return (
-            <Col key={user._id}>
-                <UserCard user={user} key={user._id} />
+        return (
+            <Col key={user._id} xs={12} md={4} lg={4} style={{marginBottom: '7.5px'}}>
+            <UserCard user={user} key={user._id} style={{height: '150px', padding: '7.5px'}} />
             </Col>
-          );
+        );
         });
     }
-  },[userId]);
-
-  function userList() {
-    return users.map((user) => {
-      return (
-        <Col key={user._id} xs={12} md={4} lg={4} style={{marginBottom: '7.5px'}}>
-          <UserCard user={user} key={user._id} style={{height: '150px', padding: '7.5px'}} />
-        </Col>
-      );
-    });
-  }
 
   return (
     <div style={{marginLeft: 50, marginRight: 50, marginTop: 100, marginBottom: 20}}>
