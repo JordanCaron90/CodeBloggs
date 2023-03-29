@@ -13,6 +13,7 @@ import Carousel from "./components/navigations/carousel";
 import NetworkView from "./components/mainViews/networkViews"
 import AdminView from "./components/mainViews/adminViews"
 import BloggsView from "./components/mainViews/bloggsViews"
+import Header from "./components/navigations/headercomp"
 
 // import Loginn from "./components/test login/loginn";
 // const  isLoggedIn =!!cookies.sessionToken;
@@ -20,7 +21,8 @@ import BloggsView from "./components/mainViews/bloggsViews"
 const App = () => {
   return (
     <div>
-      <Headercomp/>
+      {/* <Headercomp/> */}
+      <Header/>
       <div>
       <Navbar />
         <div style={{ margin: 20 }}>
@@ -30,7 +32,7 @@ const App = () => {
           <Route path="/registration" element={<Registration />} />
           <Route path="/network" element={<NetworkView />} />
           <Route path="/admin" element={<AdminView />} />
-          <Route path="/blog" element={<BloggsView />} />
+          <Route path="/bloggs" element={<BloggsView />} />
         </Routes>
         </div>
       </div>
