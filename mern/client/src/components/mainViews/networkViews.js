@@ -73,9 +73,6 @@ export default function NetworkView() {
         <Row xs={1} md={columnsPerRow}>
           {userList()}
         </Row>
-        <div className="recent-post" style={{marginTop: '20px'}}>
-          {/* code for displaying recent post */}
-        </div>
       </Container>
     </div>
   )
