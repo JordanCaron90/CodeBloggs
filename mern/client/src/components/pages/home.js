@@ -24,6 +24,7 @@ export default function User() {
         const responseData = await response.json();
         console.log(responseData);
         const user = responseData.data.user;
+        user.birthday = user.birthday.split("T")[0]
         console.log(user);
         setUser(user);
         console.log("user obj" , user)
