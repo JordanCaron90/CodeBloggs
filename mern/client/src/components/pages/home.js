@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import "../css/Style.css";
+import '../css/home.css';
 import profile from "../../assets/images/CodeBloggsgraphic.png";
 
 
