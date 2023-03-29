@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from "react-router";
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,6 +7,30 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 export default function AdminView() {
+  const navigate = useNavigate();
+
+  useEffect(async() => {
+
+      const getUser = async () => {
+          const token = getCookie('token');
+          
+          try {
+              const fetchResponse = await fetch(`http://localhost:5000/session/${token}`);
+              const data = await fetchResponse.json();
+              return data;
+          } catch (e) {
+              navigate("/");
+          }   
+
+      };
+
+      const response = await getUser();
+      if(response.type == "error"){
+          navigate("/");
+      }
+
+  },[]);
+
   return (
     <div style={{margin: 150}}>
       <Container fluid>

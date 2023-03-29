@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { getCookie } from 'react-use-cookie';
+import { useNavigate } from "react-router";
 import UserCard from '../modal/UserCard';
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function NetworkView() {
     const [userId, setUserId] = useState();
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
     const columnsPerRow = 3;
 
     useEffect(async() => {
@@ -24,12 +25,15 @@ export default function NetworkView() {
                 const data = await fetchResponse.json();
                 return data;
             } catch (e) {
-                return e;
+                navigate("/");
             }   
 
         };
 
         const response = await getUser();
+        if(response.type == "error"){
+            navigate("/");
+        }
         setUserId(response.data.user._id);
 
     },[]);
@@ -48,7 +52,6 @@ export default function NetworkView() {
         if(userId){
             const response = await getUsersExceptSelf();
             setUsers(response.data);
-            console.log(response.data)
         }
 
     },[userId]);
