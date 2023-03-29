@@ -6,7 +6,7 @@ import UserCard from '../modal/UserCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import '../css/networkViews.css'
+// import '../css/networkViews.css'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
