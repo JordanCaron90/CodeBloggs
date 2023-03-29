@@ -248,130 +248,171 @@ function Homepage() {
   //       </nav>
   //     </div> -->
 
-  // import navbar.js
+  // show post modal
 
-// function Homepage() {
-//     return(
-//         <div>
-//             <Navbar/>
-//         </div>
-//     )
-    
-//   }
+  export default function Header() {
+    const [showModal, setShowModal] = useState(false);
+    const [postTitle, setPostTitle] = useState('');
+    const [postText, setPostText] = useState('');
+  
+    const handlePostSubmit = () => {
+      // Implement post submission logic here
+      console.log(`Title: ${postTitle}`);
+      console.log(`Text: ${postText}`);
+      setShowModal(false);
+    };
+  
+    return (
+      <>
+        <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #8d88ea' }}>
+          <Navbar.Brand href="#home">
+            <img
+              src={logo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              alt="Logo"
+            />
+            Codebloggs
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto"></Nav>
+            <Nav>
+              <Button variant="outline-primary" className="mr-2" onClick={() => setShowModal(true)}>
+                Post
+              </Button>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-primary" id="user-dropdown">
+                  User
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#account-settings">Account Settings</Dropdown.Item>
+                  <Dropdown.Item href="#logout">Log Out</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Post a new article</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="postTitle">
+                <Form.Label>Title</Form.Label>
+                <Form.Control type="text" placeholder="Enter title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
+              </Form.Group>
+              <Form.Group controlId="postText">
+                <Form.Label>Text</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Enter text" value={postText} onChange={(e) => setPostText(e.target.value)} />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handlePostSubmit}>
+              Post
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 
-//   import headercompjs
- 
 
-// function Homepage() {
-//   const [showModal, setShowModal] = useState(false);
-//   const [postTitle, setPostTitle] = useState('');
-//   const [postContent, setPostContent] = useState('');
-//   const [userName, setUserName] = useState('John Doe');
-//   const [menuOpen, setMenuOpen] = useState(false);
 
-//   const handlePostClick = () => {
-//     setShowModal(true);
-//   };
 
-//   const handleModalClose = () => {
-//     setShowModal(false);
-//   };
+  test log
+  import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import { Navbar, Nav, Dropdown, Button, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../../assets/images/CodeBloggsgraphic.png';
+import { useHistory } from 'react-router-dom';
 
-//   const handlePostTitleChange = (event) => {
-//     setPostTitle(event.target.value);
-//   };
 
-//   const handlePostContentChange = (event) => {
-//     setPostContent(event.target.value);
-//   };
+export default function Header() {
+  const history = useHistory();
 
-//   const handleUserNameClick = () => {
-//     setMenuOpen(!menuOpen);
-//   };
+  const handleLogout = () => {
+    // clear user session or token here
+    history.push('/');
+  };
+  const [showModal, setShowModal] = useState(false);
+  const [postTitle, setPostTitle] = useState('');
+  const [postText, setPostText] = useState('');
 
-//   const handleAccountSettingsClick = () => {
-//     // TODO: Handle account settings click
-//   };
+  const handlePostSubmit = () => {
+    // Implement post submission logic here
+    console.log(`Title: ${postTitle}`);
+    console.log(`Text: ${postText}`);
+    setShowModal(false);
+  };
 
-//   const handleLogoutClick = () => {
-//     // TODO: Handle logout click
-//   };
-
-//   return (
-//     <div className="App">
-//       <header>
-//         <div className="header-left">
-//           <div className="logo">
-//             <img src="../assets/images/CodeBloggs graphic.png" alt="Logo" />
-//           </div>
-//         </div>
-//         <div className="header-center">
-//           <h1>CodeBloggs</h1>
-//         </div>
-//         <div className="header-right">
-//           <button onClick={handlePostClick}>Post</button>
-//           <div className="dropdown">
-//             <button className="dropbtn" onClick={handleUserNameClick}>
-//               {userName} &#9660;
-//             </button>
-//             {menuOpen && (
-//               <div className="dropdown-content">
-//                 <a href="#" onClick={handleAccountSettingsClick}>Account Settings</a>
-//                 <a href="#" onClick={handleLogoutClick}>Logout</a>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </header>
-//       {showModal && (
-//         <div className="modal">
-//           <div className="modal-content">
-//             <h2>Post something</h2>
-//             <label htmlFor="post-title">Title:</label>
-//             <input type="text" id="post-title" value={postTitle} onChange={handlePostTitleChange} />
-//             <label htmlFor="post-content">Content:</label>
-//             <textarea id="post-content" value={postContent} onChange={handlePostContentChange} />
-//             <button onClick={handleModalClose}>Cancel</button>
-//             {/* <button onClick={handlePostSubmit}>Post</button> */}
-//           </div>
-//         </div>
-//       )}
-//       <nav>
-//         <ul>
-//           <li>
-//             <a href="#">Home</a>
-//           </li>
-//           <li>
-//             <a href="#">Bloggs</a>
-//           </li>
-//           <li>
-//             <a href="#">Network</a>
-//           </li>
-//         </ul>
-//       </nav>
-//       <main>
-//         {/* Add your news feed component here */}
-//         hello world
-//       </main>
-//     </div>
-//   );
-// }
-
-<!-- navarbar css 1 -->
-#navbar {
-  position: fixed;
-  top: 300px;
-  left: 0;
-  bottom: 0;
-  width: 200px; /* set the width of the Navbar */
-  background-color: #FFCCCB;
+  return (
+    <>
+      <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #8d88ea' }} fixed="top">
+        <Navbar.Brand href="#home" className="mx-auto">
+          <img
+            src={logo}
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+            alt="Logo"
+          />
+          Codebloggs
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto"></Nav>
+          <Nav className="mx-auto">
+            <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" className="mr-2" onClick={() => setShowModal(true)}>
+              Post
+            </Button>
+            <Dropdown>
+              <Dropdown.Toggle style={{backgroundColor: "#8d88ea" }} variant="outline-light" id="user-dropdown">
+                User
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#account-settings">Account Settings</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}>Log Out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Nav>
+          <Nav className="ml-auto"></Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Post a new article</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="postTitle">
+              <Form.Label>Title</Form.Label>
+              <Form.Control type="text" placeholder="Enter title" value={postTitle} onChange={(e) => setPostTitle(e.target.value)} />
+            </Form.Group>
+            <Form.Group controlId="postText">
+              <Form.Label>Text</Form.Label>
+              <Form.Control as="textarea" rows={3} placeholder="Enter text" value={postText} onChange={(e) => setPostText(e.target.value)} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handlePostSubmit}>
+            Post
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  padding: 0 50px;
-}
+  

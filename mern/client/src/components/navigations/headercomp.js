@@ -6,6 +6,7 @@ import logo from '../../assets/images/CodeBloggsgraphic.png';
 
 
 export default function Header() {
+  
   const [showModal, setShowModal] = useState(false);
   const [postTitle, setPostTitle] = useState('');
   const [postText, setPostText] = useState('');
@@ -19,8 +20,8 @@ export default function Header() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #8d88ea' }}>
-        <Navbar.Brand href="#home">
+      <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #8d88ea' }} fixed="top">
+        <Navbar.Brand href="#home" className="mx-auto">
           <img
             src={logo}
             width="30"
@@ -33,12 +34,12 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto"></Nav>
-          <Nav>
-            <Button style={{backgroundColor: "#8d88ea" }}variant="outline-primary" className="mr-2" onClick={() => setShowModal(true)}>
+          <Nav className="mx-auto">
+            <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" className="mr-2" onClick={() => setShowModal(true)}>
               Post
             </Button>
             <Dropdown>
-              <Dropdown.Toggle variant="outline-primary" id="user-dropdown">
+              <Dropdown.Toggle style={{backgroundColor: "#8d88ea" }} variant="outline-light" id="user-dropdown">
                 User
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -47,11 +48,12 @@ export default function Header() {
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
+          <Nav className="ml-auto"></Nav>
         </Navbar.Collapse>
       </Navbar>
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Post a new article</Modal.Title>
+          <Modal.Title>Post a new Blogss!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -69,7 +71,7 @@ export default function Header() {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handlePostSubmit}>
+          <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" onClick={handlePostSubmit}>
             Post
           </Button>
         </Modal.Footer>
