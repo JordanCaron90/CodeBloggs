@@ -70,4 +70,33 @@ const getUsersExceptSelf = async(req, res) =>{
 
 };
 
-module.exports = {createUser, getUserByEmail, getUsersExceptSelf,getUserById};
+const updateUserById = async(req, res) => {
+
+    const [data,error] = await UserService.findUserByIdAndUpdate(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        console.log(data);
+        ResponseUtil.respondOk(res,data,"User updated.");
+    }
+
+}
+
+const deleteUserById = async(req, res) => {
+
+    const [data,error] = await UserService.findByUserIdAndDelete(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"User deleted");
+    }
+
+}
+
+module.exports = {createUser, getUserByEmail, getUsersExceptSelf, getUserById, updateUserById, deleteUserById};

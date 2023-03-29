@@ -54,4 +54,27 @@ const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
 
 });
 
-module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById};
+const findUserByIdAndUpdate = asyncWrapper( async (req, res) => { 
+
+    try{
+        return user = await User.findByIdAndUpdate(req.params._id, req.body, {
+            new: true
+        });
+    }
+    catch(error){
+        throw Error(`Error updating user: ${error.message}`);
+    }
+
+});
+
+const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
+
+    try{
+        return user = await User.findByIdAndDelete(req.params._id);
+    }
+    catch(error){
+        throw Error(`Error deleting user: ${error.message}`);
+    }
+});
+
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById, findUserByIdAndUpdate, findByUserIdAndDelete};

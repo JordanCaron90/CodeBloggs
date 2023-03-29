@@ -7,5 +7,7 @@ const registerUserRoutes = (app) => {
     app.post('/user/login', UserController.getUserByEmail);
     app.get('/users/:user_id', UserController.getUsersExceptSelf);
     app.get('/user/:user_id', UserController.getUserById);
+    app.put('/user/update/:_id', UserController.updateUserById);
+    app.put('/user/delete/:_id', UserController.deleteUserById);
 };
 module.exports = {registerUserRoutes};
