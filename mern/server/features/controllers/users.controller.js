@@ -79,7 +79,6 @@ const updateUserById = async(req, res) => {
         ResponseUtil.respondError(res,null,error.message)
     }
     else{
-        console.log(data);
         ResponseUtil.respondOk(res,data,"User updated.");
     }
 
