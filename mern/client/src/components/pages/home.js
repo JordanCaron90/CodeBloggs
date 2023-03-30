@@ -102,7 +102,7 @@ export default function User() {
                  <Card.Body>
                      <Card.Title>{user.first_name}</Card.Title>
                      <Card.Text>{user.birthday}</Card.Text> 
-                     <button onClick={() => navigate(`/user/${user._id}`)}>View User</button>
+                     <Card.Text>{user.location}</Card.Text>
                  </Card.Body>
                  </Card>
               )}
@@ -124,11 +124,9 @@ export default function User() {
                   {recordList()}
                   </tbody>
                 </table>
+                <button onClick={() => navigate(`/user/${user._id}`)}>Add Post</button>
             </Card.Body>
           </Card>
-        </div>
-        <div className="button-container">
-          <Link className="btn btn-primary" to="/add">Add Post</Link>
         </div>
       </div>
     </div>

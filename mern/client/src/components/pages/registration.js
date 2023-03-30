@@ -152,8 +152,8 @@ const formStyle = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "20px",
-  borderRadius: "5px",
+  padding: "30px",
+  borderRadius: "10px",
   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
 };
 const inputStyle = {
