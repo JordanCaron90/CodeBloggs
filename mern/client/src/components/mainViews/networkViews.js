@@ -50,7 +50,7 @@ export default function NetworkView() {
     return users.map((user) => {
       return (
         <Col key={user._id} xs={12} md={4} lg={4} style={{marginBottom: '7.5px'}}>
-          <UserCard user={user} key={user._id} style={{height: '150px', padding: '7.5px'}} />
+          <UserCard user={user} key={user._id} style={{height: '150px', padding: '7.5px'}} className="user-card" />
         </Col>
       );
     });

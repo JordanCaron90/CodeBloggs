@@ -12,7 +12,7 @@ export default function AdminView() {
       <Container fluid>
         <Row xs={1} md={4}> 
           <Col style={{margin: 50}}>
-            <Card style={{ width: '22rem' }}>
+            <Card style={{ width: '22rem' }} className="admin-card">
               {/*<Card.Img variant="top" src="holder.js/100px180" />*/}
               <Card.Body>
                 <Card.Title>User Manager</Card.Title>
@@ -24,7 +24,7 @@ export default function AdminView() {
             </Card>
           </Col>
           <Col style={{margin: 50}}>
-            <Card style={{ width: '22rem' }}>
+            <Card style={{ width: '22rem' }}className="admin-card">
              {/* <Card.Img variant="top" src="holder.js/100px180" />*/}
               <Card.Body>
                 <Card.Title>Content Manager</Card.Title>
@@ -40,3 +40,5 @@ export default function AdminView() {
     </div>
   )
 }
+
+

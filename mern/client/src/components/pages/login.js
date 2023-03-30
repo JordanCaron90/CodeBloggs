@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useCookie from 'react-use-cookie';
-import '../css/Style.css'
-import profilePicture from "../../images/CodeBloggs graphic.png"
-import emailIcon from "../../images/emailLgo.png"
-import passwordIcon from "../../images/padlock_321783.png"
+import '../css/Style.css';
+import '../css/login.css';
+import profilePicture from "../../images/CodeBloggs graphic.png";
+import emailIcon from "../../images/emailLgo.png";
+import passwordIcon from "../../images/padlock_321783.png";
 
 function Login(){
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ function Login(){
 
     return(
         <div className="main">
-            <div className="sub-main">
+            <div className="sub-main visible"> 
                 <form onSubmit={handleSubmit}>
                     <div className= "igsm">
                        <div className="container-images">

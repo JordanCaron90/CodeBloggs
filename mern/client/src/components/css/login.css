@@ -1,0 +1,74 @@
+/* Login Style animation */
+
+/* Scale animation */
+.login-button button {
+    transition: transform 0.2s ease-in-out;
+  }
+  .login-button button:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Rotate animation */
+  .profile {
+    transition: transform 0.5s ease-in-out;
+  }
+  .profile:hover {
+    transform: rotate(360deg);
+  }
+  
+  /* Fade-in animation */
+  .sub-main {
+    animation: fadeIn 1s ease-out;
+    opacity: 0;
+  }
+  .sub-main.visible {
+    opacity: 1;
+  }
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+
+  /* Default styles */
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .sub-main {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px;
+  }
+  
+  /* Responsive styles */
+
+  @media only screen and (max-width: 768px) {
+    .sub-main {
+      width: 90%;
+    }
+  
+    .name,
+    .email,
+    .password {
+      font-size: 16px;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .sub-main {
+      padding: 20px;
+    }
+  
+    .name,
+    .email,
+    .password {
+      font-size: 14px;
+    }
+  }

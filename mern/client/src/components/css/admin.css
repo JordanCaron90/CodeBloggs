@@ -3,5 +3,12 @@
 
 }
 div.card-body{
-    border: 2px #8d88ea; 
-}
+        border: 2px solid #FFAE9E;
+      }; 
+
+@media only screen and (max-width: 767px) {
+    .admin-card {
+      width: 70%;
+      height: 14rem;
+    }
+  }

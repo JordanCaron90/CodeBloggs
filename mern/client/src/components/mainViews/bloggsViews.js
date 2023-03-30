@@ -43,7 +43,7 @@ export default function Create() {
 
   return (
     <div className="main">
-      <div className="sub-main">
+      <div className="sub-main visible">
         <div>
           <div className="blog">
             <div className="container-images">
