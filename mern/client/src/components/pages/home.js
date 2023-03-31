@@ -62,23 +62,15 @@ export default function User() {
     }
   }, [user._id]);
   
+  // const CommentsReceiced =
+
   const recordList = () => (
     postList && postList.length > 0 ? (
       postList.map((post) => (
         <tr key={post._id}>
           <td>{post.content}</td>
           <td>{post.comments}</td>
-          <td>
-          
-            <button className="btn btn-link"
-              onClick={() => {
-                // handleShow(post._id)
-                // setRecordToDelete(post._id)
-              }}
-            >
-              Delete
-            </button>
-          </td>
+          <td>{post.likes}</td>
         </tr>
       ))
     ) : (
@@ -103,6 +95,8 @@ export default function User() {
                      <Card.Title>{user.first_name}</Card.Title>
                      <Card.Text>{user.birthday}</Card.Text> 
                      <Card.Text>{user.location}</Card.Text>
+                     <Card.Text>{user.occupation}</Card.Text>
+                     <Card.Text>{user.status}</Card.Text>
                  </Card.Body>
                  </Card>
               )}
@@ -118,13 +112,13 @@ export default function User() {
                     <tr>
                       <th>Content</th>
                       <th>Comments</th>
+                      <th>Likes</th>
                     </tr>
                   </thead>
                   <tbody>
                   {recordList()}
                   </tbody>
                 </table>
-                <button onClick={() => navigate(`/user/${user._id}`)}>Add Post</button>
             </Card.Body>
           </Card>
         </div>
