@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router";
+import { getCookie } from 'react-use-cookie';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -7,6 +10,30 @@ import Button from 'react-bootstrap/Button';
 import '../css/admin.css'
 
 export default function AdminView() {
+  const navigate = useNavigate();
+
+  useEffect(async() => {
+
+      const getUser = async () => {
+          const token = getCookie('token');
+          
+          try {
+              const fetchResponse = await fetch(`http://localhost:5000/session/${token}`);
+              const data = await fetchResponse.json();
+              return data;
+          } catch (e) {
+              navigate("/");
+          }   
+
+      };
+
+      const response = await getUser();
+      if(response.type == "error"){
+          navigate("/");
+      }
+
+  },[]);
+
   return (
     <div style={{margin: 150}}>
       <Container fluid>

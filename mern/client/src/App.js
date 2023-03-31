@@ -6,10 +6,15 @@ import Registration from "./components/pages/registration";
 import Headercomp from "./components/navigations/headercomp";
 import Home from "./components/pages/home";
 import Carousel from "./components/navigations/carousel";
-import NetworkView from "./components/mainViews/networkViews";
-import AdminView from "./components/mainViews/adminViews";
-import BloggsView from "./components/mainViews/bloggsViews";
-import Header from "./components/navigations/headercomp";
+import NetworkView from "./components/mainViews/networkViews"
+import AdminView from "./components/mainViews/adminViews"
+import BloggsView from "./components/mainViews/bloggsViews"
+import Header from "./components/navigations/headercomp"
+import UserManagerView from "./components/mainViews/userManagerView"
+
+
+// import Loginn from "./components/test login/loginn";
+// const  isLoggedIn =!!cookies.sessionToken;
 
 const App = () => {
   const location = useLocation();
@@ -34,6 +39,7 @@ const App = () => {
           <Route path="/network" element={<NetworkView />} />
           <Route path="/admin" element={<AdminView />} />
           <Route path="/bloggs" element={<BloggsView />} />
+          <Route path="/user-manager" element={<UserManagerView />} />
         </Routes>
       </div>
     </div>

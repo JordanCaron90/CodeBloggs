@@ -25,6 +25,7 @@ export default function User() {
         const responseData = await response.json();
         console.log(responseData);
         const user = responseData.data.user;
+        user.birthday = user.birthday.split("T")[0]
         console.log(user);
         setUser(user);
         console.log("user obj" , user)
@@ -61,23 +62,15 @@ export default function User() {
     }
   }, [user._id]);
   
+  // const CommentsReceiced =
+
   const recordList = () => (
     postList && postList.length > 0 ? (
       postList.map((post) => (
         <tr key={post._id}>
           <td>{post.content}</td>
           <td>{post.comments}</td>
-          <td>
-          
-            <button className="btn btn-link"
-              onClick={() => {
-                // handleShow(post._id)
-                // setRecordToDelete(post._id)
-              }}
-            >
-              Delete
-            </button>
-          </td>
+          <td>{post.likes}</td>
         </tr>
       ))
     ) : (
@@ -101,7 +94,9 @@ export default function User() {
                  <Card.Body>
                      <Card.Title>{user.first_name}</Card.Title>
                      <Card.Text>{user.birthday}</Card.Text> 
-                     <button onClick={() => navigate(`/user/${user._id}`)}>View User</button>
+                     <Card.Text>{user.location}</Card.Text>
+                     <Card.Text>{user.occupation}</Card.Text>
+                     <Card.Text>{user.status}</Card.Text>
                  </Card.Body>
                  </Card>
               )}
@@ -117,6 +112,7 @@ export default function User() {
                     <tr>
                       <th>Content</th>
                       <th>Comments</th>
+                      <th>Likes</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -125,9 +121,6 @@ export default function User() {
                 </table>
             </Card.Body>
           </Card>
-        </div>
-        <div className="button-container">
-          <Link className="btn btn-primary" to="/add">Add Post</Link>
         </div>
       </div>
     </div>
