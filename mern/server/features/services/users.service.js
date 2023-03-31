@@ -39,11 +39,9 @@ const findUserByEmail = asyncWrapper( async (req, res) =>{
     catch(error){
         throw Error(`Error finding user: ${error.message}`);
     }
-
 });
 
 const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
-
     try{
         const users = await User.find({_id: { $nin: req.params.user_id}});
         return users;
@@ -51,30 +49,58 @@ const findUsersExceptSelf = asyncWrapper( async (req, res) =>{
     catch(error){
         throw Error(`Error finding users: ${error.message}`);
     }
-
 });
 
 const findUserByIdAndUpdate = asyncWrapper( async (req, res) => { 
-
     try{
-        return user = await User.findByIdAndUpdate(req.params._id, req.body, {
+        return await User.findByIdAndUpdate(req.params._id, req.body, {
             new: true
         });
     }
     catch(error){
         throw Error(`Error updating user: ${error.message}`);
     }
-
 });
 
 const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
-
     try{
-        return user = await User.findByIdAndDelete(req.params._id);
+        return await User.findByIdAndDelete(req.params._id);
     }
     catch(error){
         throw Error(`Error deleting user: ${error.message}`);
     }
 });
 
-module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById, findUserByIdAndUpdate, findByUserIdAndDelete};
+const countUsersDocuments = asyncWrapper( async (req, res) => {
+    try{
+        return await User.countDocuments({});
+    }
+    catch(error){
+        throw Error(`Error deleting user: ${error.message}`);
+    }
+});
+
+const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
+    const page = parseInt(req.params.page);
+    const limit = parseInt(req.params.limit);
+    console.log(page + " " + limit);
+    let query = {};
+    if(req.query.first_name){
+        query["first_name"] = first_name;
+    }
+    if(req.query.last_name){
+        query["last_name"] = last_name;
+    }
+    
+    try{
+        return User.find(query)
+                   .skip((page-1) * limit)
+                   .limit(limit);
+    }
+    catch(error){
+        throw Error(`Error retrieving users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById, findUserByIdAndUpdate, findByUserIdAndDelete, findUsersPaginatedFirstAndLastName, countUsersDocuments};

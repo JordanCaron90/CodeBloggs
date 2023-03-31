@@ -14,6 +14,7 @@ import NetworkView from "./components/mainViews/networkViews"
 import AdminView from "./components/mainViews/adminViews"
 import BloggsView from "./components/mainViews/bloggsViews"
 import Header from "./components/navigations/headercomp"
+import UserManagerView from "./components/mainViews/userManagerView"
 
 // import Loginn from "./components/test login/loginn";
 // const  isLoggedIn =!!cookies.sessionToken;
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/network" element={<NetworkView />} />
           <Route path="/admin" element={<AdminView />} />
           <Route path="/bloggs" element={<BloggsView />} />
+          <Route path="/user-manager" element={<UserManagerView />} />
         </Routes>
         </div>
       </div>
