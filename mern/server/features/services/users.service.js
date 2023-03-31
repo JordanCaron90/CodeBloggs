@@ -83,15 +83,14 @@ const countUsersDocuments = asyncWrapper( async (req, res) => {
 const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
     const page = parseInt(req.params.page);
     const limit = parseInt(req.params.limit);
-    console.log(page + " " + limit);
     let query = {};
     if(req.query.first_name){
-        query["first_name"] = first_name;
+        query["first_name"] = req.query.first_name;
     }
     if(req.query.last_name){
-        query["last_name"] = last_name;
+        query["last_name"] = req.query.last_name;
     }
-    
+    console.log(query)
     try{
         return User.find(query)
                    .skip((page-1) * limit)

@@ -60,6 +60,7 @@ export default function UserManagerView() {
   const [numUsers, setNumUsers] = useState(() => {return 0});
   const limit = 4;
   const navigate = useNavigate();
+  
   const handlePaginationClick = (i) => {
     if(i >= 1 && i <= numPages){
       setPage(i);
@@ -125,7 +126,7 @@ export default function UserManagerView() {
       setUsers(usersResponse.data);
     
 
-  },[userId, page]);
+  },[numPages, page]);
 
   function displayPagination(){
     let pagination = [];
@@ -180,19 +181,19 @@ export default function UserManagerView() {
             </Col>
         </Row>
         <div>
-      <h3>Users</h3>
-        <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{userList()}</tbody>
-        </table>
-      </div>
-      <Row>
+          <h3>Users</h3>
+            <table className="table table-striped" style={{ marginTop: 20 }}>
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>{userList()}</tbody>
+            </table>
+        </div>
+        <Row>
           <Pagination>
             <Pagination.First onClick={() => handlePaginationClick(1)} />
             <Pagination.Prev onClick={() => handlePaginationClick(page - 1)}/>
