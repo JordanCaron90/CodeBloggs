@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Navbar, Nav, Dropdown, Button, Form } from 'react-bootstrap';
+import { useCookies } from 'react-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/images/CodeBloggsgraphic.png';
 
@@ -10,12 +11,23 @@ export default function Header() {
   const [showModal, setShowModal] = useState(false);
   const [postTitle, setPostTitle] = useState('');
   const [postText, setPostText] = useState('');
+  const [userToken, setUserToken, deleteUserToken] = useCookies(['token']);
+  const [userId, setUserId, deleteUserId] = useCookies(['user_id']);
 
   const handlePostSubmit = () => {
     // Implement post submission logic here
     console.log(`Title: ${postTitle}`);
     console.log(`Text: ${postText}`);
     setShowModal(false);
+  };
+
+  const handleLogOut = () => {
+    // Clear any session or authentication data from the client-side storage
+    deleteUserId('user_id', { path: '/' });
+    deleteUserToken('token', { path: '/' });
+
+    // Navigate to the login page
+    window.location.href = '/';
   };
 
   return (
@@ -44,7 +56,7 @@ export default function Header() {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#account-settings">Account Settings</Dropdown.Item>
-                <Dropdown.Item href="#logout">Log Out</Dropdown.Item>
+                <Dropdown.Item href="#logout" onClick={handleLogOut}>Log Out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </Nav>
@@ -79,3 +91,4 @@ export default function Header() {
     </>
   );
 }
+
