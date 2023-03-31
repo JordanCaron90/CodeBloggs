@@ -2,7 +2,6 @@ const CommentService = require('../services/comments.service');
 const ResponseUtil = require('../../shared/utils/response-utils').ResponseUtil;
 
 const createComment = async(req, res) => {
-
     const [data, error] = await CommentService.insertComment(req,res);
 
     if(error){

@@ -17,58 +17,48 @@ const insertPost = asyncWrapper( async (req, res) =>{
 });
 
 const findPostsByUser = asyncWrapper( async (req,res) => { 
-
     try{
         return await Post.find({user_id: req.params.user_id});
     }
     catch(error){
         throw Error(`Error getting post by user: ${error}`);
     }
-
 });
 
 const incrementLikesByOne = asyncWrapper( async (req,res) => {
-
     try{
         return await Post.findOneAndUpdate({ _id: req.params.post_id },{ $inc: { likes: 1 } });
     }
     catch(error){
         throw Error(`Error updating post's likes: ${error.message}`);
     }
-
 });
 
 const decrementLikesByOne = asyncWrapper( async (req,res) => {
-
     try{
         return await Post.findOneAndUpdate({ _id: req.params.post_id },{ $inc: { likes: -1 } });
     }
     catch(error){
         throw Error(`Error updating post's likes: ${error.message}`);
     }
-
 });
 
 const findAllBlogPosts = asyncWrapper( async(req,res) =>{
-
     try{
         return await Post.find();
     }
     catch(error){
         throw Error(`Error retrieving posts: ${error.message}`);
     }
-
 });
 
 const findLatestBlogPost = asyncWrapper( async(req,res) => {
-
     try{
         return await Post.findOne({user_id: req.params.user_id}).sort({updatedAt:-1}).limit(1);
     }
     catch(error){
         throw Error(`Error retrieving latest post: ${error}`);
     }
-
 });
 
 module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts, findLatestBlogPost};

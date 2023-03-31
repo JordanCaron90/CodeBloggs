@@ -32,7 +32,6 @@ const insertComment = asyncWrapper( async (req, res) =>{
     catch(error){
         throw Error(`Error saving comment to post: ${error.message}`);
     }
-
 });
 
 module.exports = {insertComment};

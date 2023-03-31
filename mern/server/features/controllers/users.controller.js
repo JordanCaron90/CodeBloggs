@@ -16,7 +16,6 @@ const createUser = async(req, res) => {
 };
 
 const getUserById = async(req,res) => {
-
     const [data, error] = await UserService.findUserById(req,res);
 
     if(error){
@@ -57,7 +56,6 @@ const getUserByEmail = async(req, res) => {
 };
 
 const getUsersExceptSelf = async(req, res) =>{
-
     const [data, error] = await UserService.findUsersExceptSelf(req,res);
 
     if(error){
@@ -67,7 +65,54 @@ const getUsersExceptSelf = async(req, res) =>{
     else{
         ResponseUtil.respondOk(res,data,"Users retrieved");
     }
-
 };
 
-module.exports = {createUser, getUserByEmail, getUsersExceptSelf,getUserById};
+const updateUserById = async(req, res) => {
+    const [data,error] = await UserService.findUserByIdAndUpdate(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"User updated.");
+    }
+}
+
+const deleteUserById = async(req, res) => {
+    const [data,error] = await UserService.findByUserIdAndDelete(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"User deleted");
+    }
+}
+
+const getUsersPaginatedFirstAndLastName = async(req,res) => {
+    const [data,error] = await UserService.findUsersPaginatedFirstAndLastName(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Users retrieved.");
+    }
+};
+
+const getCountUsers = async(req,res) => {
+    const [data,error] = await UserService.countUsersDocuments(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"User count retrieved.");
+    }
+};
+
+module.exports = {createUser, getUserByEmail, getUsersExceptSelf, getUserById, updateUserById, deleteUserById, getUsersPaginatedFirstAndLastName, getCountUsers};

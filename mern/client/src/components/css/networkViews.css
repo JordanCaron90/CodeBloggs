@@ -1,4 +1,16 @@
-
-.recent-post {
-  font-size: 0.75em;
+/* div.mt-5.mx-auto.card{
+  border: 2px solid #FFAE9E;
+} */
+div.text-center.card-header{
+  border: 2px solid #FFAE9E;
+}
+@media only screen and (max-width: 768px) {
+  .user-card {
+    height: auto !important;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .user-card {
+    height: 150px !important;
+  }
 }
