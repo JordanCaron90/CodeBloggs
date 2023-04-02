@@ -84,15 +84,23 @@ const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
     const page = parseInt(req.params.page);
     const limit = parseInt(req.params.limit);
     let query = {};
+    let sortQuery = {};
+
     if(req.query.first_name){
+        console.log("First Name: " + req.query._name);
         query["first_name"] = req.query.first_name;
     }
     if(req.query.last_name){
+        console.log("Last Name: " + req.query.last_name);
         query["last_name"] = req.query.last_name;
     }
-    console.log(query)
+    if(req.query.sort_by && req.query.order){
+        sortQuery[req.query.sort_by] = req.query.order;
+    }
+
     try{
         return User.find(query)
+                   .sort(sortQuery)
                    .skip((page-1) * limit)
                    .limit(limit);
     }

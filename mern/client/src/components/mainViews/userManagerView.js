@@ -10,6 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
 import Modal from 'react-bootstrap/Modal'
+//import img1 from '../../images/caret_down_icon.png';
+//import passwordIcon from "../../images/padlock_321783.png";
 
 function User(props) {
 
@@ -20,44 +22,51 @@ function User(props) {
 
   return(
     <>
-    <>
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Deleting User</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>Are you sure you want to delete this user?</Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={() => {props.deleteUser(props.user._id)}}>
-          Delete User
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  </>
-    <tr>
-      <td>{props.user.first_name}</td>
-      <td>{props.user.last_name}</td>
-      <td>
-        <Link className="btn btn-link" to={`/edit/${props.user._id}`}>
-          Edit
-        </Link> |
-        <button className="btn btn-link"onClick={handleShow}>
-          Delete
-        </button>
-      </td>
-    </tr>
+      <>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Deleting User</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to delete this user?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={() => {props.deleteUser(props.user._id)}}>
+              Delete User
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+      <tr>
+        <td>{props.user.first_name}</td>
+        <td>{props.user.last_name}</td>
+        <td>
+          <Link className="btn btn-link" to={`/edit/${props.user._id}`}>
+            Edit
+          </Link> |
+          <button className="btn btn-link"onClick={handleShow}>
+            Delete
+          </button>
+        </td>
+      </tr>
     </>
   );
 }
 
 export default function UserManagerView() {
   const [users,setUsers] = useState([]);
-  const [userId, setUserId] = useState();
   const [page, setPage] = useState(()=> {return 1});
   const [numPages, setNumPages] = useState(()=>{return 1});
   const [numUsers, setNumUsers] = useState(() => {return 0});
+  const [filter, setFilter] = useState({ 
+    first_name: "",
+    last_name: "",
+  });
+  const [firstNameImg, setFirstNameImg] = useState('../../images/caret_vertical_icon.png');
+  const [lastNameImg, setLastNameImg] = useState('../../images/caret_vertical_icon.png');
+  const firstOrder = "asc";
+  const lastOrder = "desc"
   const limit = 4;
   const navigate = useNavigate();
   
@@ -65,6 +74,32 @@ export default function UserManagerView() {
     if(i >= 1 && i <= numPages){
       setPage(i);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
+  const handleFirstClick = async (e) => {
+    
+  };
+
+  const handleLastClick = async (e) => {
+    
+  };
+
+
+  const getTableData = async () =>{
+
+    try {
+      const fetchResponse = await fetch(`http://localhost:5000/all-users/${page}/${limit}?`);
+      const data = await fetchResponse.json();
+      return data;
+    } 
+    catch (e) {
+      console.log(e.message);
+    }   
+
   };
 
   useEffect(async() => {
@@ -88,9 +123,6 @@ export default function UserManagerView() {
     if(response.type == "error"){
         navigate("/");
     }
-    console.log("success");
-    setUserId(response.data.user._id);
-
   });
 
   useEffect(async() => {
@@ -168,7 +200,8 @@ export default function UserManagerView() {
 
   return (
     <div>
-      <Container>
+      <Container style={{padding: "5rem"}}>
+      <form onSubmit={handleSubmit}>
         <Row xs={1} md={3}>
             <Col className='w-50' style={{padding: "10px"}}>
                 <Form.Control  type="text" placeholder="First Name" />
@@ -180,13 +213,20 @@ export default function UserManagerView() {
             <Button variant="primary">Search</Button>
             </Col>
         </Row>
+        </form>
         <div>
           <h3>Users</h3>
             <table className="table table-striped" style={{ marginTop: 20 }}>
               <thead>
                 <tr>
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th onClick={handleFirstClick}>
+                    First Name
+                    <img src={firstNameImg} alt="first_name_icon" />
+                  </th>
+                  <th onClick={handleLastClick}>
+                    Last Name
+                    <img src={lastNameImg} alt="last_name_icon" />
+                  </th>
                   <th>Action</th>
                 </tr>
               </thead>
