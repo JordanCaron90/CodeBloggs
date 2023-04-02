@@ -159,7 +159,6 @@ export default function UserManagerView() {
     };
 
     const getUsersPaginated = async () => {
-      console.log(url)
       try {
         const fetchResponse = await fetch(url);
         const data = await fetchResponse.json();
@@ -204,10 +203,12 @@ export default function UserManagerView() {
 
   function updateFirst(first){
     setFirstName(first);
+    setPage(1);
   }
 
   function updateLast(last){
     setLastName(last);
+    setPage(1);
   }
 
   async function deleteUser(id) {
@@ -220,6 +221,7 @@ export default function UserManagerView() {
     }
     const newUsers = users.filter((el) => el._id !== id);
     setUsers(newUsers);
+    setPage(1);
   }
 
   function resetImages(){
