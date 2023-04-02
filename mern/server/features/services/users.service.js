@@ -72,8 +72,14 @@ const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
 });
 
 const countUsersDocuments = asyncWrapper( async (req, res) => {
+    let query = {};
+    if(req.query.first_name)
+        query["first_name"] = { $regex: req.query.first_name, $options:'i'};
+    if(req.query.last_name)
+        query["last_name"] = { $regex: req.query.last_name, $options:'i'};
+
     try{
-        return await User.countDocuments({});
+        return await User.countDocuments(query);
     }
     catch(error){
         throw Error(`Error deleting user: ${error.message}`);
@@ -87,12 +93,10 @@ const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
     let sortQuery = {};
 
     if(req.query.first_name){
-        console.log("First Name: " + req.query._name);
-        query["first_name"] = req.query.first_name;
+        query["first_name"] = { $regex: req.query.first_name, $options:'i'};
     }
     if(req.query.last_name){
-        console.log("Last Name: " + req.query.last_name);
-        query["last_name"] = req.query.last_name;
+        query["last_name"] = { $regex: req.query.last_name, $options:'i'};
     }
     if(req.query.sort_by && req.query.order){
         sortQuery[req.query.sort_by] = req.query.order;

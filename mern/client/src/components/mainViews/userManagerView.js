@@ -3,6 +3,8 @@ import { useState, useEffect} from 'react';
 import { getCookie } from 'react-use-cookie';
 import { useNavigate } from "react-router";
 import {Link} from "react-router-dom";
+
+//Bootstrap
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -10,11 +12,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
 import Modal from 'react-bootstrap/Modal'
-//import img1 from '../../images/caret_down_icon.png';
-//import passwordIcon from "../../images/padlock_321783.png";
+
+//Images
+import verticalCaret from '../../images/caret_vertical_icon.png';
+import upCaret from '../../images/caret_up_icon.png';
+import downCaret from '../../images/caret_down_icon.png';
 
 function User(props) {
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -59,15 +63,14 @@ export default function UserManagerView() {
   const [page, setPage] = useState(()=> {return 1});
   const [numPages, setNumPages] = useState(()=>{return 1});
   const [numUsers, setNumUsers] = useState(() => {return 0});
-  const [filter, setFilter] = useState({ 
-    first_name: "",
-    last_name: "",
-  });
-  const [firstNameImg, setFirstNameImg] = useState('../../images/caret_vertical_icon.png');
-  const [lastNameImg, setLastNameImg] = useState('../../images/caret_vertical_icon.png');
-  const firstOrder = "asc";
-  const lastOrder = "desc"
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName]= useState("");
+  const [firstNameImg, setFirstNameImg] = useState(verticalCaret);
+  const [lastNameImg, setLastNameImg] = useState(verticalCaret);
+  const [order, setOrder] = useState("desc");
+  const [sortField, setSortField] = useState("");
   const limit = 4;
+  const url = `http://localhost:5000/all-users/${page}/${limit}?first_name=${first_name}&last_name=${last_name}&sort_by=${sortField}&order=${order}`;
   const navigate = useNavigate();
   
   const handlePaginationClick = (i) => {
@@ -78,28 +81,43 @@ export default function UserManagerView() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setPage(1);
+    setFirstNameImg(verticalCaret);
+    setLastNameImg(verticalCaret);
+    setOrder("desc");
+    setSortField("");
+    setFirstName("");
+    setLastName("");
   };
 
   const handleFirstClick = async (e) => {
-    
+    resetImages();
+    setSortField("first_name")
+    if(order === "desc"){
+      setOrder("asc");
+      setFirstNameImg(upCaret);
+    }
+    else{
+      setOrder("desc");
+      setFirstNameImg(downCaret);
+    }
+
+    setPage(1);
   };
 
   const handleLastClick = async (e) => {
-    
-  };
+    resetImages();
+    setSortField("last_name")
+    if(order === "desc"){
+      setOrder("asc");
+      setLastNameImg(upCaret);
+    }
+    else{
+      setOrder("desc");
+      setLastNameImg(downCaret);
+    }
 
-
-  const getTableData = async () =>{
-
-    try {
-      const fetchResponse = await fetch(`http://localhost:5000/all-users/${page}/${limit}?`);
-      const data = await fetchResponse.json();
-      return data;
-    } 
-    catch (e) {
-      console.log(e.message);
-    }   
-
+    setPage(1);
   };
 
   useEffect(async() => {
@@ -128,8 +146,11 @@ export default function UserManagerView() {
   useEffect(async() => {
 
     const getUserCount = async () => {
+
+      let countUrl = `http://localhost:5000/user-count?first_name=${first_name}&last_name=${last_name}`;
+        
         try {
-            const fetchResponse = await fetch(`http://localhost:5000/user-count`);
+            const fetchResponse = await fetch(countUrl);
             const data = await fetchResponse.json();
             return data;
         } catch (e) {
@@ -138,9 +159,9 @@ export default function UserManagerView() {
     };
 
     const getUsersPaginated = async () => {
-
+      console.log(url)
       try {
-        const fetchResponse = await fetch(`http://localhost:5000/all-users/${page}/${limit}`);
+        const fetchResponse = await fetch(url);
         const data = await fetchResponse.json();
         return data;
       } 
@@ -158,7 +179,7 @@ export default function UserManagerView() {
       setUsers(usersResponse.data);
     
 
-  },[numPages, page]);
+  },[numPages, page, sortField, order, first_name, last_name]);
 
   function displayPagination(){
     let pagination = [];
@@ -170,14 +191,6 @@ export default function UserManagerView() {
   }
 
   function userList() {
-
-    let filtered = [];
-    if(page != numPages)
-        
-    for(let i = 0; i < 10; i++){
-
-      }
-
       return users.map((user) => {
         return (
           <User
@@ -187,16 +200,29 @@ export default function UserManagerView() {
           />
         );
       });
-    }
+  }
 
-    async function deleteUser(id) {
-      await fetch(`http://localhost:5000/user/delete/${id}`, {
-        method: "DELETE"
-      });
-  
-      const newUsers = users.filter((el) => el._id !== id);
-      setUsers(newUsers);
-    }
+  function updateFirst(first){
+    setFirstName(first);
+  }
+
+  function updateLast(last){
+    setLastName(last);
+  }
+
+  async function deleteUser(id) {
+    await fetch(`http://localhost:5000/user/delete/${id}`, {
+      method: "DELETE"
+    });
+
+    const newUsers = users.filter((el) => el._id !== id);
+    setUsers(newUsers);
+  }
+
+  function resetImages(){
+    setFirstNameImg(verticalCaret);
+    setLastNameImg(verticalCaret);
+  }
 
   return (
     <div>
@@ -204,13 +230,25 @@ export default function UserManagerView() {
       <form onSubmit={handleSubmit}>
         <Row xs={1} md={3}>
             <Col className='w-50' style={{padding: "10px"}}>
-                <Form.Control  type="text" placeholder="First Name" />
+                <Form.Control
+                  type="text" 
+                  placeholder="First Name"
+                  name="firstName"
+                  value={first_name}
+                  onChange={(e) => updateFirst(e.target.value)}
+                />
             </Col>
             <Col className='w-50' style={{padding: "10px"}}>
-                <Form.Control type="text" placeholder="Last Name" />
+                <Form.Control
+                  type="text" 
+                  placeholder="Last Name"
+                  name="lastName"
+                  value={last_name}
+                  onChange={(e) => updateLast(e.target.value)}
+                />
             </Col>
             <Col>
-            <Button variant="primary">Search</Button>
+            <Button type="submit" variant="primary">Reset Filters</Button>
             </Col>
         </Row>
         </form>
@@ -221,11 +259,11 @@ export default function UserManagerView() {
                 <tr>
                   <th onClick={handleFirstClick}>
                     First Name
-                    <img src={firstNameImg} alt="first_name_icon" />
+                    <img src={firstNameImg} alt="first_name_icon" style={{height: "auto", maxWidth: "3%"}} />
                   </th>
                   <th onClick={handleLastClick}>
                     Last Name
-                    <img src={lastNameImg} alt="last_name_icon" />
+                    <img src={lastNameImg} alt="last_name_icon" style={{height: "auto", maxWidth: "3%"}}/>
                   </th>
                   <th>Action</th>
                 </tr>
