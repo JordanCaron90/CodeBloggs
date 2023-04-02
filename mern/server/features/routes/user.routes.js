@@ -8,7 +8,7 @@ const registerUserRoutes = (app) => {
     app.get('/users/:user_id', UserController.getUsersExceptSelf);
     app.get('/user/:user_id', UserController.getUserById);
     app.put('/user/update/:_id', UserController.updateUserById);
-    app.put('/user/delete/:_id', UserController.deleteUserById);
+    app.delete('/user/delete/:_id', UserController.deleteUserById);
     app.get('/all-users/:page/:limit', UserController.getUsersPaginatedFirstAndLastName);
     app.get('/user-count', UserController.getCountUsers);
 };

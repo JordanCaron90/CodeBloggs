@@ -179,7 +179,7 @@ export default function UserManagerView() {
       setUsers(usersResponse.data);
     
 
-  },[numPages, page, sortField, order, first_name, last_name]);
+  },[numPages, page, sortField, order, first_name, last_name, users.length]);
 
   function displayPagination(){
     let pagination = [];
@@ -211,10 +211,13 @@ export default function UserManagerView() {
   }
 
   async function deleteUser(id) {
-    await fetch(`http://localhost:5000/user/delete/${id}`, {
+    const response = await fetch(`http://localhost:5000/user/delete/${id}`, {
       method: "DELETE"
     });
-
+    const json = await response.json();
+    if(json.type === "error"){
+      console.log("error");
+    }
     const newUsers = users.filter((el) => el._id !== id);
     setUsers(newUsers);
   }

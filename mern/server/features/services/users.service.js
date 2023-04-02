@@ -1,6 +1,9 @@
 const asyncWrapper = require('../../shared/utils/base-utils');
 const Schemas = require('../../shared/db/schemas');
+const ObjectId = require("mongodb").ObjectId;
 const User = Schemas.UserModel;
+const Post = Schemas.PostModel;
+const Comment = Schemas.CommentModel;
 
 const insertUser = asyncWrapper( async (req, res) =>{
     let body = req.body;
@@ -63,6 +66,23 @@ const findUserByIdAndUpdate = asyncWrapper( async (req, res) => {
 });
 
 const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
+    let query = {};
+    query["user_id"] = ObjectId(req.params._id);
+
+    try{
+        await Comment.deleteMany(query);
+    }
+    catch(error){
+        throw Error(`Error deleting comments from user: ${error.message}`);
+    }
+
+    try{
+        await Post.deleteMany(query);
+    }
+    catch(error){
+        throw Error(`Error deleting postss from user: ${error.message}`);
+    }
+
     try{
         return await User.findByIdAndDelete(req.params._id);
     }
