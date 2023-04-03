@@ -46,7 +46,8 @@ export default function AdminView() {
                 <Card.Text>
                   Manage the users' access priviliges and information.
                 </Card.Text>
-                <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" href='/user-manager'>Manage User</Button>
+                <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" onClick={() => navigate("/user-manager")}>Manage User</Button>
+
               </Card.Body>
             </Card>
           </Col>

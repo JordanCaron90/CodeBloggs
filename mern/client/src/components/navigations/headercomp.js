@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #FFAE9E' }} fixed="top">
+      <Navbar bg="light" expand="lg" style={{ borderBottom: '2px solid #8d88ea' }} fixed="top">
         <Navbar.Brand href="#home" className="mx-auto">
           <img
             src={logo}
