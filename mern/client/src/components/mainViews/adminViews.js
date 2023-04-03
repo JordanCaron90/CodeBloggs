@@ -47,6 +47,7 @@ export default function AdminView() {
                   Manage the users' access priviliges and information.
                 </Card.Text>
                 <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" onClick={() => navigate("/user-manager")}>Manage User</Button>
+
               </Card.Body>
             </Card>
           </Col>
@@ -58,7 +59,7 @@ export default function AdminView() {
                 <Card.Text>
                   Manage the users's content such as posts and comments.
                 </Card.Text>
-                <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light">Manage Content</Button>
+                <Button style={{backgroundColor: "#8d88ea" }}variant="outline-light" href='/post-manager'>Manage Content</Button>
               </Card.Body>
             </Card>
           </Col>

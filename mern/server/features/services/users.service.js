@@ -1,6 +1,9 @@
 const asyncWrapper = require('../../shared/utils/base-utils');
 const Schemas = require('../../shared/db/schemas');
+const ObjectId = require("mongodb").ObjectId;
 const User = Schemas.UserModel;
+const Post = Schemas.PostModel;
+const Comment = Schemas.CommentModel;
 
 const insertUser = asyncWrapper( async (req, res) =>{
     let body = req.body;
@@ -63,6 +66,23 @@ const findUserByIdAndUpdate = asyncWrapper( async (req, res) => {
 });
 
 const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
+    let query = {};
+    query["user_id"] = ObjectId(req.params._id);
+
+    try{
+        await Comment.deleteMany(query);
+    }
+    catch(error){
+        throw Error(`Error deleting comments from user: ${error.message}`);
+    }
+
+    try{
+        await Post.deleteMany(query);
+    }
+    catch(error){
+        throw Error(`Error deleting postss from user: ${error.message}`);
+    }
+
     try{
         return await User.findByIdAndDelete(req.params._id);
     }
@@ -72,8 +92,14 @@ const findByUserIdAndDelete = asyncWrapper( async (req, res) => {
 });
 
 const countUsersDocuments = asyncWrapper( async (req, res) => {
+    let query = {};
+    if(req.query.first_name)
+        query["first_name"] = { $regex: req.query.first_name, $options:'i'};
+    if(req.query.last_name)
+        query["last_name"] = { $regex: req.query.last_name, $options:'i'};
+
     try{
-        return await User.countDocuments({});
+        return await User.countDocuments(query);
     }
     catch(error){
         throw Error(`Error deleting user: ${error.message}`);
@@ -84,15 +110,21 @@ const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
     const page = parseInt(req.params.page);
     const limit = parseInt(req.params.limit);
     let query = {};
+    let sortQuery = {};
+
     if(req.query.first_name){
-        query["first_name"] = req.query.first_name;
+        query["first_name"] = { $regex: req.query.first_name, $options:'i'};
     }
     if(req.query.last_name){
-        query["last_name"] = req.query.last_name;
+        query["last_name"] = { $regex: req.query.last_name, $options:'i'};
     }
-    console.log(query)
+    if(req.query.sort_by && req.query.order){
+        sortQuery[req.query.sort_by] = req.query.order;
+    }
+
     try{
         return User.find(query)
+                   .sort(sortQuery)
                    .skip((page-1) * limit)
                    .limit(limit);
     }
@@ -102,4 +134,23 @@ const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
 
 });
 
-module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById, findUserByIdAndUpdate, findByUserIdAndDelete, findUsersPaginatedFirstAndLastName, countUsersDocuments};
+const findAndEditUser = asyncWrapper( async (req,res) => {
+
+    try{
+        return User.findByIdAndUpdate(req.params._id, req.body);
+    }
+    catch(error){
+        throw Error(`Error retrieving users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, 
+                  findUserByEmail, 
+                  findUsersExceptSelf, 
+                  findUserById, 
+                  findUserByIdAndUpdate, 
+                  findByUserIdAndDelete, 
+                  findUsersPaginatedFirstAndLastName, 
+                  countUsersDocuments,
+                  findAndEditUser};

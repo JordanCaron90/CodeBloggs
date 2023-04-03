@@ -9,10 +9,10 @@ const insertComment = asyncWrapper( async (req, res) =>{
     query["user_id"] = ObjectId(req.body.user_id);
     query["post_id"] = ObjectId(req.body.post_id);
     let newComment = new Comment(query);
-    let post, createdComment;
+    let post, newPost, createdComment;
 
     try{
-        post =  await Post.findById(req.body.post_id);
+        post = await Post.findById(req.body.post_id);
     }
     catch(error){
         throw Error(`Error finding post related to comment: ${error.message}`);
@@ -27,7 +27,8 @@ const insertComment = asyncWrapper( async (req, res) =>{
 
     try{
         post.comments.push(createdComment);
-        return await post.save()
+        newPost = await post.save();
+        return createdComment;
     }
     catch(error){
         throw Error(`Error saving comment to post: ${error.message}`);

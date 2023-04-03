@@ -2,6 +2,7 @@ const asyncWrapper = require('../../shared/utils/base-utils');
 const Schemas = require('../../shared/db/schemas');
 const ObjectId = require("mongodb").ObjectId;
 const Post = Schemas.PostModel;
+const Comment = Schemas.CommentModel;
 
 const insertPost = asyncWrapper( async (req, res) =>{
     let query = req.body;
@@ -61,4 +62,51 @@ const findLatestBlogPost = asyncWrapper( async(req,res) => {
     }
 });
 
-module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts, findLatestBlogPost};
+const findByPostIdAndDelete = asyncWrapper( async (req, res) => {
+    let query = {};
+    query["post_id"] = ObjectId(req.params._id);
+    try{
+        await Comment.deleteMany(query);
+    }
+    catch (error) {
+        throw Error(`Error deleting comments: ${error.message}`);
+    }
+
+    try{
+        return await Post.findByIdAndDelete(req.params._id);
+    }
+    catch(error){
+        throw Error(`Error deleting post: ${error.message}`);
+    }
+});
+
+const countPostDocuments = asyncWrapper( async (req, res) => {
+    try{
+        return await Post.countDocuments({});
+    }
+    catch(error){
+        throw Error(`Error deleting post: ${error.message}`);
+    }
+});
+
+const findUsersPaginatedComment = asyncWrapper( async (req,res) => {
+    const page = parseInt(req.params.page);
+    const limit = parseInt(req.params.limit);
+    let query = {};
+    if(req.query.content){
+        query["content"] = req.query.content;
+    }
+    console.log(query)
+    try{
+        return Post.find(query)
+                   .skip((page-1) * limit)
+                   .limit(limit);
+    }
+    catch(error){
+        throw Error(`Error retrieving users: ${error.message}`);
+    }
+
+});
+
+
+module.exports = {insertPost, findPostsByUser, incrementLikesByOne, decrementLikesByOne, findAllBlogPosts, findLatestBlogPost, findByPostIdAndDelete, countPostDocuments, findUsersPaginatedComment};

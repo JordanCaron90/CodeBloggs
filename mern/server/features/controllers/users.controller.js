@@ -115,4 +115,16 @@ const getCountUsers = async(req,res) => {
     }
 };
 
-module.exports = {createUser, getUserByEmail, getUsersExceptSelf, getUserById, updateUserById, deleteUserById, getUsersPaginatedFirstAndLastName, getCountUsers};
+const editUserById = async(req,res) => {
+    const [data,error] = await UserService.findAndEditUser(req, res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null, error.message);
+    }
+    else{
+        ResponseUtil.respondOk(res,data, "User updated.");
+    }
+};
+
+module.exports = {createUser, getUserByEmail, getUsersExceptSelf, getUserById, updateUserById, deleteUserById, getUsersPaginatedFirstAndLastName, getCountUsers, editUserById};
