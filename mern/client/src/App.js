@@ -11,6 +11,7 @@ import AdminView from "./components/mainViews/adminViews"
 import BloggsView from "./components/mainViews/bloggsViews"
 import Header from "./components/navigations/headercomp"
 import UserManagerView from "./components/mainViews/userManagerView"
+import EditUser from "./components/modal/editUser"
 
 
 // import Loginn from "./components/test login/loginn";
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/admin" element={<AdminView />} />
           <Route path="/bloggs" element={<BloggsView />} />
           <Route path="/user-manager" element={<UserManagerView />} />
+          <Route path="/edit/:id" element={<EditUser />} />
         </Routes>
       </div>
     </div>
