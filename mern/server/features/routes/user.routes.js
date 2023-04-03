@@ -11,5 +11,6 @@ const registerUserRoutes = (app) => {
     app.delete('/user/delete/:_id', UserController.deleteUserById);
     app.get('/all-users/:page/:limit', UserController.getUsersPaginatedFirstAndLastName);
     app.get('/user-count', UserController.getCountUsers);
+    app.put('/user/edit/:_id', Userhash.hashPassword, UserController.editUserById);
 };
 module.exports = {registerUserRoutes}; 

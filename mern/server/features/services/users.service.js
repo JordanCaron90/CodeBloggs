@@ -134,4 +134,23 @@ const findUsersPaginatedFirstAndLastName = asyncWrapper( async (req,res) => {
 
 });
 
-module.exports = {insertUser, findUserByEmail, findUsersExceptSelf, findUserById, findUserByIdAndUpdate, findByUserIdAndDelete, findUsersPaginatedFirstAndLastName, countUsersDocuments};
+const findAndEditUser = asyncWrapper( async (req,res) => {
+
+    try{
+        return User.findByIdAndUpdate(req.params._id, req.body);
+    }
+    catch(error){
+        throw Error(`Error retrieving users: ${error.message}`);
+    }
+
+});
+
+module.exports = {insertUser, 
+                  findUserByEmail, 
+                  findUsersExceptSelf, 
+                  findUserById, 
+                  findUserByIdAndUpdate, 
+                  findByUserIdAndDelete, 
+                  findUsersPaginatedFirstAndLastName, 
+                  countUsersDocuments,
+                  findAndEditUser};

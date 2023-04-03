@@ -63,12 +63,15 @@ const findLatestBlogPost = asyncWrapper( async(req,res) => {
 });
 
 const findByPostIdAndDelete = asyncWrapper( async (req, res) => {
+    let query = {};
+    query["post_id"] = ObjectId(req.params._id);
     try{
-        await 
+        await Comment.deleteMany(query);
     }
     catch (error) {
-
+        throw Error(`Error deleting comments: ${error.message}`);
     }
+
     try{
         return await Post.findByIdAndDelete(req.params._id);
     }
