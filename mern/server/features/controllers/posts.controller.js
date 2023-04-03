@@ -83,4 +83,42 @@ const getLatestBlogPost = async(req,res) => {
     }
 };
 
-module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne, getAllBlogPosts, getLatestBlogPost};
+const deletePostById = async(req, res) => {
+    const [data,error] = await PostService.findByPostIdAndDelete(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Post deleted");
+    }
+};
+
+const getCountPosts = async(req,res) => {
+    console.log('iamworking');
+    const [data,error] = await PostService.countPostDocuments(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"User count retrieved.");
+    }
+};
+
+const getUsersPaginatedComment = async(req,res) => {
+    const [data,error] = await PostService.findUsersPaginatedComment(req,res);
+
+    if(error){
+        res.status(500);
+        ResponseUtil.respondError(res,null,error.message)
+    }
+    else{
+        ResponseUtil.respondOk(res,data,"Posts retrieved.");
+    }
+};
+
+
+module.exports = {createPost, getPostByUser, updateLikesByOne, updateLikesByMinusOne, getAllBlogPosts, getLatestBlogPost, deletePostById, getCountPosts, getUsersPaginatedComment};

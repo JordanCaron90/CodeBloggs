@@ -7,6 +7,9 @@ const registerPostRoutes = (app) => {
     app.put('/post/unlike/:post_id', PostController.updateLikesByMinusOne);
     app.get('/posts', PostController.getAllBlogPosts);
     app.get('/post/latest/:user_id', PostController.getLatestBlogPost);
+    app.put('/post/delete/:_id', PostController.deletePostById);
+    app.get('/post-count', PostController.getCountPosts);
+    app.get('/all-posts/:page/:limit', PostController.getUsersPaginatedComment);
 };
 
 module.exports = {registerPostRoutes};
