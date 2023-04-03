@@ -10,6 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Pagination from 'react-bootstrap/Pagination';
 import Modal from 'react-bootstrap/Modal'
+import '../css/usermanagerview.css'
+
 
 function User(props) {
 

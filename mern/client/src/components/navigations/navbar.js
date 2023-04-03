@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Navbar() {
   return (
     <div className="navbar-container">
-      <Nav className="flex-column bg-purple" style={{ borderRight: '2px solid #FFAE9E' }}>
+      <Nav className="flex-column bg-purple" style={{ borderRight: '2px solid #8d88ea' }}>
         <Nav.Item>
           <Nav.Link href="/home" className="pl-3" >Home</Nav.Link>
         </Nav.Item>
