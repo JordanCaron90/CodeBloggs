@@ -233,7 +233,7 @@ export default function UserManagerView() {
 
   return (
     <div>
-      <Container style={{padding: "5rem"}}>
+      <Container>
       <form onSubmit={handleSubmit}>
         <Row xs={1} md={3}>
             <Col className='w-50' style={{padding: "10px"}}>
